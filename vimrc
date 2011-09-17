@@ -1,8 +1,6 @@
-set nocompatible 
-
 set number                  " I like seeing the line numbers
 
-set syntax                  " Syntax highlighting
+syntax enable               " Syntax highlighting
 
 set softtabstop=2           " 2 space tabs
 set shiftwidth=2
