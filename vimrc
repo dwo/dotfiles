@@ -10,8 +10,7 @@ set expandtab
 set autoindent              " i'm too lazy to press tab
 set smartindent
 
-set textwidth=80            " don't go below 50!
-set colorcolumn=+1
+set colorcolumn=80
 
 set wrapscan                " search the whole damn file
 set ignorecase              " ignore case in searches
@@ -25,3 +24,9 @@ set laststatus=2            " Always show status bar
 
 set splitbelow              " Open splits on the bottom
 set splitright              "   and on the right
+
+color kate                  " my scheme
+
+set list!                   " make trailing whitespace visible
+set listchars=trail:.
+
