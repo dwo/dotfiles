@@ -25,8 +25,20 @@ set laststatus=2            " Always show status bar
 set splitbelow              " Open splits on the bottom
 set splitright              "   and on the right
 
-color kate                  " my scheme
-
 set list!                   " make trailing whitespace visible
 set listchars=trail:.
+
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+autocmd BufWritePre *.rb,*.js :call <SID>StripTrailingWhitespaces()
 
