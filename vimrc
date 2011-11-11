@@ -2,6 +2,8 @@ set number                  " I like seeing the line numbers
 
 syntax enable               " Syntax highlighting
 
+set backspace=2             " make backspace behave
+
 set softtabstop=2           " 2 space tabs
 set shiftwidth=2
 set tabstop=2
