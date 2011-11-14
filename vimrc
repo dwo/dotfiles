@@ -1,4 +1,5 @@
 set number                  " I like seeing the line numbers
+set nowrap                  " I am capable of horizontal scrolling
 
 syntax enable               " Syntax highlighting
 
