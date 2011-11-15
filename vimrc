@@ -43,5 +43,5 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-autocmd BufWritePre *.rb,*.js :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.feature,*.rb,*.js :call <SID>StripTrailingWhitespaces()
 
