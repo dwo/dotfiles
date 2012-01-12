@@ -33,20 +33,18 @@ set laststatus=2            " Always show status bar
 set splitbelow              " Open splits on the bottom                             
 set splitright              "   and on the right                                    
                                                                                     
-set list!                   " make trailing whitespace visible                      
-set listchars=trail:. 
-
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
+set list listchars=trail:·,tab:⇥· " make trailing whitespace visible                
+                                                                                    
+function! <SID>StripTrailingWhitespaces()                                           
+    " Preparation: save last search, and cursor position.                           
+    let _s=@/                                                                       
+    let l = line(".")                                                               
+    let c = col(".")                                                                
+    " Do the business:                                                              
+    %s/\s\+$//e                                                                     
+    " Clean up: restore previous search history, and cursor position                
+    let @/=_s                                                                       
+    call cursor(l, c)                                                               
+endfunction                                                                         
+                                                                                    
 autocmd BufWritePre *.erb,*.css,*.feature,*.rb,*.js :call <SID>StripTrailingWhitespaces()
-
