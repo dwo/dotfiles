@@ -21,7 +21,6 @@ set colorcolumn=81          " highlight the 80 character line
 set wrapscan                " search the whole damn file                            
 set ignorecase              " ignore case in searches                               
 set smartcase               "   unless search has a capital letter                  
-set hlsearch                                                                        
 set incsearch                                                                       
                                                                                     
 set nobackup                " Don't keep backup files                               
