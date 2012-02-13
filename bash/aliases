@@ -1,0 +1,5 @@
+alias gst='git status'                                                              
+alias gpl='git pull --rebase && git submodule update --init --recursive'            
+alias spek='spec -f nested -c -b '                                                  
+alias be='bundle exec'                                                              
+alias trt='touch tmp/restart.txt'
