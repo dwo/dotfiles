@@ -34,7 +34,7 @@ set splitright              "   and on the right
 
 set wildmode=longest,list   " bash-style tab completion
 
-set list listchars=trail:·,tab:· " make trailing whitespace visible
+set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
