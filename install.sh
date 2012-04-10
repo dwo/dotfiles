@@ -1,3 +1,4 @@
+cp gemrc $HOME/.gemrc
 cp screenrc $HOME/.screenrc
 cp vimrc    $HOME/.vimrc
 cp gitconfig $HOME/.gitconfig
