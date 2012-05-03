@@ -36,6 +36,12 @@ set wildmode=longest,list   " bash-style tab completion
 
 set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
+" Don't you use those arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
     let _s=@/
