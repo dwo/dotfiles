@@ -1,4 +1,6 @@
 .*.swo
+.swo
 .*.swp
+.swp
 tags
 .rvmrc
