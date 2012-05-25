@@ -1,6 +1,7 @@
 .*.swo
-.swo
 .*.swp
+.rvmrc
+.swo
 .swp
 tags
-.rvmrc
+vendor/bundle
