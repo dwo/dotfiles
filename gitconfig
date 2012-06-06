@@ -30,8 +30,4 @@
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space
 	excludesfile = ~/.gitignore
-[giggle]
-	compact-mode = false
-	main-window-maximized = true
-	main-window-geometry = 449x525+1882+254
 
