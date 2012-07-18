@@ -13,7 +13,6 @@ set tabstop=2
 set expandtab
 
 set autoindent              " i'm too lazy to press tab
-set smartindent
 
 set colorcolumn=81          " highlight the 80 character line
 
