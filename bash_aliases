@@ -1,4 +1,7 @@
 alias be='bundle exec'
+alias gd='git diff'
+alias gg='git grep'
+alias gl='git log'
 alias gpl='git pull --rebase && git submodule update --init --recursive'
 alias gst='git status'
 alias sa='ssh-add -t $((8*3600))'
