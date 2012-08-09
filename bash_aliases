@@ -1,6 +1,6 @@
 alias be='bundle exec'
 alias gc='git commit'
-alias gco'git checkout'
+alias gco='git checkout'
 alias gd='git diff'
 alias gg='git grep'
 alias gl='git log'
