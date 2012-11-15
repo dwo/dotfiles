@@ -24,7 +24,7 @@ set incsearch
 
 set nobackup                " Don't keep backup files
 set nowritebackup           " No really
-set directory+=,~/tmp,$TMP  " Single location for swap files
+set directory=~/.vimswap//  " Single location for swap files
 
 set laststatus=2            " Always show status bar
 
