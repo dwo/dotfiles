@@ -4,6 +4,6 @@
 .rvmrc
 .swo
 .swp
-coverage.cache
+coverage*
 tags
 vendor/bundle
