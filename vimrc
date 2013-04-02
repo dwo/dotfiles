@@ -26,10 +26,11 @@ set incsearch                     " search incrementally
 set wildmode=longest,list         " bash-style tab completion for filenames
 set suffixesadd=.rb               " suffixes for gf file search
 
-" Backup/Swap
+" Filesystem
 set nobackup                      " Don't keep backup files
-set nowritebackup                 " No really
+set nowritebackup                   " No really
 set directory=~/.vimswap//        " Single location for swap files
+set autoread                      " auto re-read externally changed buffers
 
 " Status Bar
 set laststatus=2                  " Always show status bar
