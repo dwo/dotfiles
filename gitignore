@@ -6,6 +6,7 @@
 .rvmrc
 .swo
 .swp
+.bundle
 coverage*
 tags
 vendor/bundle
