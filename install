@@ -10,3 +10,4 @@ mkdir -p        $HOME/.vimswap
 
 echo "Your config has been copied to $HOME"
 exec bash -l
+echo "reloaded bash"
