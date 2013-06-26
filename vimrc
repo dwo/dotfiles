@@ -42,11 +42,6 @@ set splitright                    "   and on the right
 
 " Input
 set backspace=2                   " ensure backspace works
-                                  " no arrow keys in normal mode
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
 
 function! <SID>StripTrailingWhitespaces()
     " save last search, and cursor position.
