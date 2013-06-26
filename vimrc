@@ -31,7 +31,8 @@ set nobackup                      " Don't keep backup files
 set nowritebackup                   " No really
 set directory=~/.vimswap//        " Single location for swap files
 set autoread                      " auto re-read externally changed buffers
-au InsertEnter * :checkt          "   seriously
+au InsertEnter * :checkt %        "   check the file timestamp of the current
+                                  "   buffer (%) when I go into Insert mode
 
 " Status Bar
 set laststatus=2                  " Always show status bar
