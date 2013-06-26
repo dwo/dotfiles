@@ -3,7 +3,7 @@ set encoding=utf-8
 syntax enable                     " Syntax highlighting
 
 " Ruby highlighting for ruby files that don't end in .rb
-au BufNewFile,BufRead Capfile\|Rakefile setf ruby
+au BufNewFile,BufRead Capfile\|Rakefile :setf ruby
 
 " Presentation
 set number                        " I like seeing the line numbers
@@ -31,6 +31,7 @@ set nobackup                      " Don't keep backup files
 set nowritebackup                   " No really
 set directory=~/.vimswap//        " Single location for swap files
 set autoread                      " auto re-read externally changed buffers
+au InsertEnter * :checkt          "   seriously
 
 " Status Bar
 set laststatus=2                  " Always show status bar
@@ -41,7 +42,7 @@ set splitright                    "   and on the right
 
 " Input
 set backspace=2                   " ensure backspace works
-" no arrow keys in normal mode
+                                  " no arrow keys in normal mode
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -59,4 +60,4 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-autocmd BufWritePre *.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
+au BufWritePre *.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
