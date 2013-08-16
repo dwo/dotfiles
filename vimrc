@@ -56,4 +56,4 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-au BufWritePre *.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
+au BufWritePre *.cpp,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
