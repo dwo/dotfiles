@@ -12,10 +12,10 @@ set colorcolumn=81                " highlight the 80 character line
 set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
 " Tabbing and Indentation
+set expandtab                     " use spaces instead of tabs
 set softtabstop=2                 " 2 space tabs
 set shiftwidth=2
 set tabstop=2
-set expandtab
 set autoindent                    " i'm too lazy to press tab
 
 " Searching
@@ -57,3 +57,4 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 au BufWritePre *.cpp,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
+au BufRead Makefile :call set noexpandtab
