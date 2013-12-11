@@ -3,7 +3,7 @@ set encoding=utf-8
 syntax enable                     " Syntax highlighting
 
 " Ruby highlighting for ruby files that don't end in .rb
-au BufNewFile,BufRead Capfile\|Rakefile :setf ruby
+au BufNewFile,BufRead *.pp\|Capfile\|Rakefile :setf ruby
 
 " Presentation
 set number                        " I like seeing the line numbers
