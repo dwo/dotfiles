@@ -56,5 +56,5 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-au BufWritePre *.cpp,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
+au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead Makefile set noexpandtab
