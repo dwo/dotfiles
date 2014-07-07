@@ -29,7 +29,7 @@ set suffixesadd=.rb               " suffixes for gf file search
 " Filesystem
 set nobackup                      " Don't keep backup files
 set nowritebackup                   " No really
-set directory=~/.vimswap//        " Single location for swap files
+set directory=~/.vimswap/         " Single location for swap files
 set autoread                      " auto re-read externally changed buffers
 au InsertEnter * :checkt %        "   check the file timestamp of the current
                                   "   buffer (%) when I go into Insert mode
