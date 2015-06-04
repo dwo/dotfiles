@@ -57,4 +57,4 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
-au BufRead Makefile setlocal noexpandtab
+au BufRead Makefile,*.go setlocal noexpandtab
