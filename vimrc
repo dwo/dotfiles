@@ -58,3 +58,4 @@ endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead Makefile,*.go setlocal noexpandtab
+au BufRead *.txt setlocal tw=80
