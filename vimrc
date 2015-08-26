@@ -58,4 +58,10 @@ endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead Makefile,*.go setlocal noexpandtab
+autocmd Filetype php call FourSpaceTabs()
+function FourSpaceTabs()
+  setlocal ts=4
+  setlocal sts=4
+  setlocal sw=4
+endfunction
 au BufRead *.txt setlocal tw=80
