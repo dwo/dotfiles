@@ -24,25 +24,25 @@ set ignorecase                    " ignore case in searches
 set smartcase                     "   unless search has a capital letter
 set incsearch                     " search incrementally
 set wildmode=longest,list         " bash-style tab completion for filenames
-set suffixesadd=.rb               " suffixes for gf file search
+set suffixesadd=.rb         " suffixes for gf file search
 
 " Filesystem
-set nobackup                      " Don't keep backup files
-set nowritebackup                   " No really
-set directory=~/.vimswap/         " Single location for swap files
-set autoread                      " auto re-read externally changed buffers
-au InsertEnter * :checkt %        "   check the file timestamp of the current
-                                  "   buffer (%) when I go into Insert mode
+set nobackup                " Don't keep backup files
+set nowritebackup             " No really
+set directory=~/.vimswap/   " Single location for swap files
+set autoread                " auto re-read externally changed buffers
+au InsertEnter * :checkt %  " check the file timestamp of the current
+                            " buffer (%) when I go into Insert mode
 
 " Status Bar
-set laststatus=2                  " Always show status bar
+set laststatus=2            " Always show status bar
 
 " Splits
-set splitbelow                    " Open splits on the bottom
-set splitright                    "   and on the right
+set splitbelow              " Open splits on the bottom
+set splitright              "   and on the right
 
 " Input
-set backspace=2                   " ensure backspace works
+set backspace=2             " ensure backspace works
 
 function! <SID>StripTrailingWhitespaces()
     " save last search, and cursor position.
@@ -57,7 +57,7 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
-au BufRead Makefile,*.go setlocal noexpandtab
+au BufRead Makefile,*.go,*.scala setlocal noexpandtab
 autocmd Filetype php call FourSpaceTabs()
 function FourSpaceTabs()
   setlocal ts=4
