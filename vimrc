@@ -6,10 +6,10 @@ syntax enable                     " Syntax highlighting
 au BufNewFile,BufRead *.pp\|Capfile\|Gemfile\|Guardfile\|Rakefile :setf ruby
 
 " Presentation
-set number                         " I like seeing the line numbers
-set nowrap                         " It's cool, I'll scroll horizontally.
-set colorcolumn=81                 " highlight the 80 character line
-set list listchars=trail:·,tab:⇥\  " make trailing whitespace visible
+set number                        " I like seeing the line numbers
+set nowrap                        " It's cool, I'll scroll horizontally.
+set colorcolumn=81                " highlight the 80 character line
+set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
 " Tabbing and Indentation
 set expandtab              " use spaces instead of tabs
@@ -58,7 +58,7 @@ endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead Makefile,*.go,*.scala setlocal noexpandtab
-au BufRead *.go setlocal list listchars=trail:·,tab:\ \ 
+au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
 autocmd Filetype go,php call FourSpaceTabs()
 function FourSpaceTabs()
   setlocal ts=4
