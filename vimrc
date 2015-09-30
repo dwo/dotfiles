@@ -6,43 +6,43 @@ syntax enable                     " Syntax highlighting
 au BufNewFile,BufRead *.pp\|Capfile\|Gemfile\|Guardfile\|Rakefile :setf ruby
 
 " Presentation
-set number                        " I like seeing the line numbers
-set nowrap                        " It's cool, I'll scroll horizontally.
-set colorcolumn=81                " highlight the 80 character line
-set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
+set number                         " I like seeing the line numbers
+set nowrap                         " It's cool, I'll scroll horizontally.
+set colorcolumn=81                 " highlight the 80 character line
+set list listchars=trail:·,tab:⇥\  " make trailing whitespace visible
 
 " Tabbing and Indentation
-set expandtab                     " use spaces instead of tabs
-set softtabstop=2                 " 2 space tabs
+set expandtab              " use spaces instead of tabs
+set softtabstop=2          " 2 space tabs
 set shiftwidth=2
 set tabstop=2
-set autoindent                    " i'm too lazy to press tab
+set autoindent             " i'm too lazy to press tab
 
 " Searching
-set wrapscan                      " search the whole damn file
-set ignorecase                    " ignore case in searches
-set smartcase                     "   unless search has a capital letter
-set incsearch                     " search incrementally
-set wildmode=longest,list         " bash-style tab completion for filenames
-set suffixesadd=.rb         " suffixes for gf file search
+set wrapscan               " search the whole damn file
+set ignorecase             " ignore case in searches
+set smartcase              "   unless search has a capital letter
+set incsearch              " search incrementally
+set wildmode=longest,list  " bash-style tab completion for filenames
+set suffixesadd=.rb        " suffixes for gf file search
 
 " Filesystem
-set nobackup                " Don't keep backup files
-set nowritebackup             " No really
-set directory=~/.vimswap/   " Single location for swap files
-set autoread                " auto re-read externally changed buffers
-au InsertEnter * :checkt %  " check the file timestamp of the current
-                            " buffer (%) when I go into Insert mode
+set nobackup               " Don't keep backup files
+set nowritebackup            " No really
+set directory=~/.vimswap/  " Single location for swap files
+set autoread               " auto re-read externally changed buffers
+au InsertEnter * :checkt % " check the file timestamp of the current
+                           " buffer (%) when I go into Insert mode
 
 " Status Bar
-set laststatus=2            " Always show status bar
+set laststatus=2           " Always show status bar
 
 " Splits
-set splitbelow              " Open splits on the bottom
-set splitright              "   and on the right
+set splitbelow             " Open splits on the bottom
+set splitright             "   and on the right
 
 " Input
-set backspace=2             " ensure backspace works
+set backspace=2            " ensure backspace works
 
 function! <SID>StripTrailingWhitespaces()
     " save last search, and cursor position.
@@ -58,7 +58,8 @@ endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead Makefile,*.go,*.scala setlocal noexpandtab
-autocmd Filetype php call FourSpaceTabs()
+au BufRead *.go setlocal list listchars=trail:·,tab:\ \ 
+autocmd Filetype go,php call FourSpaceTabs()
 function FourSpaceTabs()
   setlocal ts=4
   setlocal sts=4
