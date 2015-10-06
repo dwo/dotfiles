@@ -56,7 +56,7 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
+au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead Makefile,*.go,*.scala setlocal noexpandtab
 au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
 autocmd Filetype go,php call FourSpaceTabs()
