@@ -56,10 +56,4 @@ endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.md,*.pp,*.py,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
-autocmd Filetype go,php call FourSpaceTabs()
-function FourSpaceTabs()
-  setlocal ts=4
-  setlocal sts=4
-  setlocal sw=4
-endfunction
 au BufRead *.txt,*.markdown,*.md setlocal tw=80
