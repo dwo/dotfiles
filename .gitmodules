@@ -1,0 +1,9 @@
+[submodule "dotvim/vendor/vim-ruby"]
+	path = dotvim/vendor/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
+[submodule "dotvim/vendor/css.vim"]
+	path = dotvim/vendor/css.vim
+	url = https://github.com/JulesWang/css.vim.git
+[submodule "dotvim/vendor/vim-go"]
+	path = dotvim/vendor/vim-go
+	url = https://github.com/fatih/vim-go.git

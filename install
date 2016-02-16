@@ -1,12 +1,43 @@
 #!/bin/bash
 
+git submodule init && git submodule update
+
+# GNU Screen
+cp screenrc     $HOME/.screenrc
+
+# Bash
 cp bash_aliases $HOME/.bash_aliases
-cp gemrc        $HOME/.gemrc
+
+# Git
 cp gitconfig    $HOME/.gitconfig
 cp gitignore    $HOME/.gitignore
-cp screenrc     $HOME/.screenrc
-cp vimrc        $HOME/.vimrc
-mkdir -p        $HOME/.vimswap
 
-echo "Your config has been copied to $HOME"
-. ~/.bashrc
+# Ruby
+cp gemrc        $HOME/.gemrc
+
+# Vim
+mkdir -p        $HOME/.vimswap
+cp vimrc        $HOME/.vimrc
+
+#   ...plugins
+mkdir -p $HOME/.vim/indent
+cp dotvim/vendor/*/indent/*.vim   $HOME/.vim/indent/.
+mkdir -p $HOME/.vim/syntax
+cp dotvim/vendor/*/syntax/*.vim   $HOME/.vim/syntax/.
+mkdir -p $HOME/.vim/ftdetect
+cp dotvim/vendor/*/ftdetect/*.vim $HOME/.vim/ftdetect/.
+mkdir -p $HOME/.vim/ftplugin
+cp dotvim/vendor/*/ftplugin/*.vim $HOME/.vim/ftplugin/.
+
+
+echo "Your dotfiles have been copied to $HOME"
+
+if [ -e ~/.bashrc ]
+then
+  . ~/.bashrc
+fi
+
+if [ -e ~/.bash_profile ]
+then
+  . ~/.bash_profile
+fi

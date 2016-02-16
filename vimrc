@@ -1,9 +1,7 @@
 set encoding=utf-8
 
 syntax enable                     " Syntax highlighting
-
-" Ruby highlighting for ruby files that don't end in .rb
-au BufNewFile,BufRead *.pp\|Capfile\|Gemfile\|Guardfile\|Rakefile :setf ruby
+filetype plugin on
 
 " Presentation
 set number                        " I like seeing the line numbers
@@ -56,8 +54,7 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.md,*.pp,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
-au BufRead Makefile,*.go,*.scala setlocal noexpandtab
+au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.md,*.pp,*.py,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
 autocmd Filetype go,php call FourSpaceTabs()
 function FourSpaceTabs()
@@ -65,4 +62,4 @@ function FourSpaceTabs()
   setlocal sts=4
   setlocal sw=4
 endfunction
-au BufRead *.txt setlocal tw=80
+au BufRead *.txt,*.markdown,*.md setlocal tw=80
