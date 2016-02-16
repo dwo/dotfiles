@@ -11,3 +11,4 @@ coverage*
 tags
 vendor/bundle
 npm-debug.log
+__pycache__
