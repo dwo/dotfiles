@@ -7,3 +7,6 @@
 [submodule "dotvim/vendor/vim-go"]
 	path = dotvim/vendor/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule "dotvim/vendor/vim-puppet"]
+	path = dotvim/vendor/vim-puppet
+	url = git@github.com:rodjek/vim-puppet.git
