@@ -10,3 +10,9 @@
 [submodule "dotvim/vendor/vim-puppet"]
 	path = dotvim/vendor/vim-puppet
 	url = git@github.com:rodjek/vim-puppet.git
+[submodule "dotvim/vendor/vim-javascript"]
+	path = dotvim/vendor/vim-javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "dotvim/vendor/vim-jsx"]
+	path = dotvim/vendor/vim-jsx
+	url = https://github.com/mxw/vim-jsx

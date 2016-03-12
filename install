@@ -20,15 +20,12 @@ mkdir -p        $HOME/.vimswap
 cp vimrc        $HOME/.vimrc
 
 #   ...plugins
-mkdir -p $HOME/.vim/indent
-cp dotvim/vendor/*/indent/*.vim   $HOME/.vim/indent/.
-mkdir -p $HOME/.vim/syntax
-cp dotvim/vendor/*/syntax/*.vim   $HOME/.vim/syntax/.
-mkdir -p $HOME/.vim/ftdetect
-cp dotvim/vendor/*/ftdetect/*.vim $HOME/.vim/ftdetect/.
-mkdir -p $HOME/.vim/ftplugin
-cp dotvim/vendor/*/ftplugin/*.vim $HOME/.vim/ftplugin/.
-
+declare -a folders=("after" "indent" "ftdetect" "ftplugin" "syntax")
+for folder in "${folders[@]}"
+do
+  mkdir -p $HOME/.vim/$folder
+  cp -R dotvim/vendor/*/$folder/* $HOME/.vim/$folder
+done
 
 echo "Your dotfiles have been copied to $HOME"
 
