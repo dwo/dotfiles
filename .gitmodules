@@ -16,3 +16,6 @@
 [submodule "dotvim/vendor/vim-jsx"]
 	path = dotvim/vendor/vim-jsx
 	url = https://github.com/mxw/vim-jsx
+[submodule "dotvim/vendor/vim-jinja"]
+	path = dotvim/vendor/vim-jinja
+	url = git@github.com:lepture/vim-jinja.git
