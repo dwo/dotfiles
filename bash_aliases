@@ -1,5 +1,7 @@
 alias be='bundle exec'
 alias bilp='bundle install --local --path vendor/bundle --without deployment'
+alias dc='docker-compose'
+alias dm='docker-machine'
 alias gc='git commit'
 alias gco='git checkout'
 alias gd='git diff'
