@@ -23,9 +23,6 @@
 	changed = red
 	untracked = cyan
 
-[alias]
-	co = checkout
-
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space
 	excludesfile = ~/.gitignore
