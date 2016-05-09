@@ -9,7 +9,8 @@ cp screenrc     $HOME/.screenrc
 cp bash_aliases $HOME/.bash_aliases
 
 # Git
-cp gitconfig    $HOME/.gitconfig
+# TODO: it's annoying to have to reset user.email everytime
+# cp gitconfig    $HOME/.gitconfig
 cp gitignore    $HOME/.gitignore
 
 # Ruby
