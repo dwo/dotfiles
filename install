@@ -21,7 +21,7 @@ mkdir -p        $HOME/.vimswap
 cp vimrc        $HOME/.vimrc
 
 #   ...plugins
-declare -a folders=("after" "indent" "ftdetect" "ftplugin" "syntax")
+declare -a folders=("after" "compiler" "indent" "ftdetect" "ftplugin" "syntax")
 for folder in "${folders[@]}"
 do
   mkdir -p $HOME/.vim/$folder
