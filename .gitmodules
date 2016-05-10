@@ -19,3 +19,6 @@
 [submodule "dotvim/vendor/vim-jinja"]
 	path = dotvim/vendor/vim-jinja
 	url = git@github.com:lepture/vim-jinja.git
+[submodule "dotvim/vendor/vim-scala"]
+	path = dotvim/vendor/vim-scala
+	url = git@github.com:derekwyatt/vim-scala.git
