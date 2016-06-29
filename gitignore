@@ -9,6 +9,7 @@
 .rvmrc
 .swo
 .swp
+.venv
 __pycache__
 coverage*
 npm-debug.log
