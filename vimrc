@@ -56,4 +56,3 @@ endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.md,*.pp,*.py,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
-au BufRead *.txt,*.markdown,*.md setlocal tw=80
