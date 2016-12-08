@@ -54,5 +54,5 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.md,*.pp,*.py,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
+au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.pp,*.py,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
