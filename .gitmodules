@@ -22,3 +22,6 @@
 [submodule "dotvim/vendor/vim-scala"]
 	path = dotvim/vendor/vim-scala
 	url = git@github.com:derekwyatt/vim-scala.git
+[submodule "dotvim/vendor/vim-toml"]
+	path = dotvim/vendor/vim-toml
+	url = git@github.com:cespare/vim-toml.git
