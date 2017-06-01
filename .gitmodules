@@ -25,3 +25,6 @@
 [submodule "dotvim/vendor/vim-toml"]
 	path = dotvim/vendor/vim-toml
 	url = git@github.com:cespare/vim-toml.git
+[submodule "ansible-vim"]
+	path = ansible-vim
+	url = git@github.com:pearofducks/ansible-vim.git
