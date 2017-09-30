@@ -28,3 +28,6 @@
 [submodule "dotvim/vendor/ansible-vim"]
 	path = dotvim/vendor/ansible-vim
 	url = git@github.com:pearofducks/ansible-vim.git
+[submodule "dotvim/vendor/jq.vim"]
+	path = dotvim/vendor/jq.vim
+	url = git@github.com:vito-c/jq.vim.git
