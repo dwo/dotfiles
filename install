@@ -7,6 +7,7 @@ cp screenrc     $HOME/.screenrc
 
 # Bash
 cp bash_aliases $HOME/.bash_aliases
+cp bash_profile $HOME/.bash_profile
 
 # Git
 # TODO: it's annoying to have to reset user.email everytime
