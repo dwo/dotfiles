@@ -1,0 +1,8 @@
+tap "homebrew/bundle"
+tap "homebrew/core"
+brew "bash-completion"
+brew "coreutils"
+brew "git"
+brew "jq"
+brew "screen"
+brew "vim"
