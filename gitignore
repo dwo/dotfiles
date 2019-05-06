@@ -4,15 +4,19 @@
 .*.swp
 .DS_Store
 .bundle
-.drone.sec.yml
 .idea
 .rbx
 .rvmrc
 .swo
 .swp
-.venv
-__pycache__
 coverage*
 npm-debug.log
 tags
 vendor/bundle
+
+# Python
+*.egg-info
+*.pyc
+.eggs
+.venv
+__pycache__
