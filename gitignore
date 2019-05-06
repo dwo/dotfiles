@@ -1,18 +1,17 @@
-*.iml
-.*.swn
-.*.swo
-.*.swp
-.DS_Store
-.bundle
-.idea
-.rbx
-.rvmrc
-.swo
-.swp
+# Code
 coverage*
-npm-debug.log
 tags
-vendor/bundle
+
+# IntelliJ
+*.iml
+.idea
+
+# MacOS
+.DS_Store
+
+# Node
+.bundle
+npm-debug.log
 
 # Python
 *.egg-info
@@ -20,3 +19,15 @@ vendor/bundle
 .eggs
 .venv
 __pycache__
+
+# Ruby
+.rbx
+.rvmrc
+vendor/bundle
+
+# Vim
+.*.swn
+.*.swo
+.*.swp
+.swo
+.swp
