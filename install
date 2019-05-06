@@ -10,7 +10,12 @@ cp bash_aliases $HOME/.bash_aliases
 cp bash_profile $HOME/.bash_profile
 
 # Git
-cp gitconfig    $HOME/.gitconfig
+export GIT_EMAIL=`git config --global --get user.email`
+if [ -z "$GIT_EMAIL" ]; then
+  read -p "Email for Git: " email
+  export GIT_EMAIL=$email
+fi
+eval echo "\"$(cat gitconfig.template)\"" > $HOME/.gitconfig
 cp gitignore    $HOME/.gitignore
 
 # Ruby
