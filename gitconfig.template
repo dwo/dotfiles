@@ -1,6 +1,7 @@
 [user]
 	name = Robin Tweedie
 	email = ${GIT_EMAIL}
+	signingkey = ${GIT_SIGNINGKEY}
 
 [color]
 	branch = auto
@@ -13,3 +14,6 @@
 
 [push]
 	default = current
+
+[commit]
+	gpgSign = true

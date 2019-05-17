@@ -23,6 +23,11 @@ if [ -z "$GIT_EMAIL" ]; then
   read -p "Email for Git: " email
   export GIT_EMAIL=$email
 fi
+export GIT_SIGNINGKEY=`git config --global --get user.signingkey`
+if [ -z "$GIT_SIGNINGKEY" ]; then
+  read -p "Signing Key for Git: " signingkey
+  export GIT_SIGNINGKEY=$signingkey
+fi
 eval echo "\"$(cat gitconfig.template)\"" > $HOME/.gitconfig
 cp gitignore    $HOME/.gitignore
 
