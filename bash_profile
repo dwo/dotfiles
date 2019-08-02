@@ -1,9 +1,10 @@
 export HISTSIZE=100000
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export GOPATH="$HOME/source"
+export GOPATH="$HOME/src"
 
 source ~/.bash_aliases
+source ~/.bash_local
 
 # git-completion
 if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
