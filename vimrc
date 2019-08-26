@@ -41,6 +41,7 @@ set splitright             "   and on the right
 
 " Input
 set backspace=2            " ensure backspace works
+set iskeyword+=-           " enable tab completion of dashed words
 
 function! <SID>StripTrailingWhitespaces()
     " save last search, and cursor position.
