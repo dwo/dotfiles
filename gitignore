@@ -20,6 +20,7 @@ npm-debug.log
 .venv
 venv
 __pycache__
+.ipynb_checkpoints
 
 # Ruby
 .rbx
@@ -31,4 +32,4 @@ vendor/bundle
 .*.swo
 .*.swp
 .swo
-.swp
+
