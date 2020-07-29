@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Brew bundle
 if ! [ -x "$(command -v brew)" ]; then
@@ -13,9 +13,9 @@ git submodule init && git submodule update
 # GNU Screen
 cp screenrc     $HOME/.screenrc
 
-# Bash
-cp bash_aliases $HOME/.bash_aliases
-cp bash_profile $HOME/.bash_profile
+# Zsh
+cp aliases $HOME/.aliases
+cp zshrc $HOME/.zshrc
 
 # Git
 export GIT_EMAIL=`git config --global --get user.email`
@@ -47,14 +47,3 @@ do
 done
 
 echo "Your dotfiles have been copied to $HOME"
-
-# Source bash inits
-if [ -e ~/.bashrc ]
-then
-  . ~/.bashrc
-fi
-
-if [ -e ~/.bash_profile ]
-then
-  . ~/.bash_profile
-fi

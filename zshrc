@@ -3,14 +3,12 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export GOPATH="$HOME/src"
 
-source ~/.bash_aliases
-source ~/.bash_local
+source ~/.aliases
+# Optional machine-specific shell init
+source ~/.zshrc_local
 
-# git-completion
-if [ -f `brew --prefix`/etc/bash_completion.d/git-completion.bash ]; then
-  . `brew --prefix`/etc/bash_completion.d/git-completion.bash
-  . `brew --prefix`/etc/bash_completion.d/git-prompt.sh
-fi
+# git tab-completion
+autoload -Uz compinit && compinit
 
 eval "$(pyenv init -)"
 
