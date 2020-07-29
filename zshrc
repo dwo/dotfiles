@@ -5,7 +5,9 @@ export GOPATH="$HOME/src"
 
 source ~/.aliases
 # Optional machine-specific shell init
-source ~/.zshrc_local
+if [ -e ~/.zshrc_local ]; then
+  source ~/.zshrc_local
+fi
 
 # git tab-completion
 autoload -Uz compinit && compinit
