@@ -1,4 +1,7 @@
-#!/bin/zsh
+#!/bin/bash
+
+# Submodules
+git submodule init && git submodule update
 
 # Brew bundle
 if ! [ -x "$(command -v brew)" ]; then
@@ -7,43 +10,46 @@ if ! [ -x "$(command -v brew)" ]; then
 fi
 brew bundle
 
-# Submodules
-git submodule init && git submodule update
-
 # GNU Screen
-cp screenrc     $HOME/.screenrc
+cp screenrc "$HOME"/.screenrc
 
-# Zsh
-cp aliases $HOME/.aliases
-cp zshrc $HOME/.zshrc
+# Shell
+if [ "$SHELL" != "/usr/local/bin/fish" ]; then
+  chsh -s /usr/local/bin/fish
+fi
+cp aliases "$HOME"/.aliases
+cp shrc "$HOME"/.config/fish/fish.config
 
 # Git
-export GIT_EMAIL=`git config --global --get user.email`
+GIT_EMAIL=$(git config --global --get user.email)
+export GIT_EMAIL
 if [ -z "$GIT_EMAIL" ]; then
-  read -p "Email for Git: " email
+  read -r "Email for Git: " email
   export GIT_EMAIL=$email
 fi
-export GIT_SIGNINGKEY=`git config --global --get user.signingkey`
+GIT_SIGNINGKEY=$(git config --global --get user.signingkey)
+export GIT_SIGNINGKEY
 if [ -z "$GIT_SIGNINGKEY" ]; then
-  read -p "Signing Key for Git: " signingkey
-  export GIT_SIGNINGKEY=$signingkey
+  read -r "Signing Key for Git: " signingkey
+  GIT_SIGNINGKEY=$signingkey
+  export GIT_SIGNINGKEY
 fi
-eval echo "\"$(cat gitconfig.template)\"" > $HOME/.gitconfig
-cp gitignore    $HOME/.gitignore
+eval echo "\"$(cat gitconfig.template)\"" > "$HOME"/.gitconfig
+cp gitignore "$HOME"/.gitignore
 
 # Ruby
-cp gemrc        $HOME/.gemrc
+cp gemrc "$HOME"/.gemrc
 
 # Vim
-mkdir -p        $HOME/.vimswap
-cp vimrc        $HOME/.vimrc
+mkdir -p "$HOME"/.vimswap
+cp vimrc "$HOME"/.vimrc
 
 #   ...plugins
 declare -a folders=("after" "compiler" "indent" "ftdetect" "ftplugin" "syntax")
 for folder in "${folders[@]}"
 do
-  mkdir -p $HOME/.vim/$folder
-  cp -R dotvim/vendor/*/$folder/* $HOME/.vim/$folder
+  mkdir -p "$HOME"/.vim/"$folder"
+  cp -R dotvim/vendor/*/"$folder"/* "$HOME"/.vim/"$folder"
 done
 
 echo "Your dotfiles have been copied to $HOME"

@@ -1,0 +1,8 @@
+export HISTSIZE=100000
+export GOPATH="$HOME/src"
+
+source ~/.aliases
+# Optional machine-specific shell init
+if [ -e ~/.sh_local ]; then
+  source ~/.sh_local
+fi
