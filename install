@@ -3,20 +3,19 @@
 # Submodules
 git submodule init && git submodule update
 
-# Brew bundle
-if ! [ -x "$(command -v brew)" ]; then
-  echo "Please install homebrew"
-  exit 1
+if [ "$(uname)" == "Darwin" ]; then
+  # Brew bundle
+  if ! [ -x "$(command -v brew)" ]; then
+    echo "Please install homebrew"
+    exit 1
+  fi
+  brew bundle
 fi
-brew bundle
 
 # GNU Screen
 cp screenrc "$HOME"/.screenrc
 
 # Shell
-if [ "$SHELL" != "/usr/local/bin/fish" ]; then
-  chsh -s /usr/local/bin/fish
-fi
 cp aliases "$HOME"/.aliases
 cp shrc "$HOME"/.config/fish/fish.config
 
@@ -24,13 +23,13 @@ cp shrc "$HOME"/.config/fish/fish.config
 GIT_EMAIL=$(git config --global --get user.email)
 export GIT_EMAIL
 if [ -z "$GIT_EMAIL" ]; then
-  read -r "Email for Git: " email
+  read -p "Email for Git: " email
   export GIT_EMAIL=$email
 fi
 GIT_SIGNINGKEY=$(git config --global --get user.signingkey)
 export GIT_SIGNINGKEY
 if [ -z "$GIT_SIGNINGKEY" ]; then
-  read -r "Signing Key for Git: " signingkey
+  read -p "Signing Key for Git: " signingkey
   GIT_SIGNINGKEY=$signingkey
   export GIT_SIGNINGKEY
 fi
