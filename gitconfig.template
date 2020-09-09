@@ -11,6 +11,7 @@
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space
 	excludesfile = ~/.gitignore
+	editor = vim
 
 [push]
 	default = current
