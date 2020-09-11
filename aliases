@@ -1,5 +1,6 @@
 #!/usr/local/bin/fish
 
+alias acs='apt-cache search' # To search for packages to install
 alias be='bundle exec'
 alias dc='docker-compose'
 alias dr='docker run'
