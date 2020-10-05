@@ -16,15 +16,12 @@
 [submodule "dotvim/vendor/vim-jinja"]
 	path = dotvim/vendor/vim-jinja
 	url = https://github.com/lepture/vim-jinja.git
-[submodule "dotvim/vendor/vim-scala"]
-	path = dotvim/vendor/vim-scala
-	url = https://github.com/derekwyatt/vim-scala.git
-[submodule "dotvim/vendor/vim-toml"]
-	path = dotvim/vendor/vim-toml
-	url = https://github.com/cespare/vim-toml.git
 [submodule "dotvim/vendor/ansible-vim"]
 	path = dotvim/vendor/ansible-vim
 	url = https://github.com/pearofducks/ansible-vim.git
 [submodule "dotvim/vendor/jq.vim"]
 	path = dotvim/vendor/jq.vim
 	url = https://github.com/vito-c/jq.vim.git
+[submodule "dotvim/vendor/vim-terraform"]
+	path = dotvim/vendor/vim-terraform
+	url = git@github.com:hashivim/vim-terraform.git
