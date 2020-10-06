@@ -6,6 +6,7 @@ filetype plugin on
 " Presentation
 set number                        " I like seeing the line numbers
 set nowrap                        " It's cool, I'll scroll horizontally.
+set textwidth=120                 " wrap at 120 characters
 set colorcolumn=121               " highlight where lines start to get long
 set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
