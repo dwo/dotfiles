@@ -58,3 +58,11 @@ endfunction
 
 au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.pp,*.py,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
 au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
+
+" Python Black formatting
+let g:black_linelength=120
+let g:black_skip_string_normalization=1
+autocmd BufWritePre *.py execute ':Black'
+
+" Terraform formatting
+let g:terraform_fmt_on_save=1
