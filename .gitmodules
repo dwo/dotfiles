@@ -25,3 +25,6 @@
 [submodule "dotvim/vendor/vim-terraform"]
 	path = dotvim/vendor/vim-terraform
 	url = git@github.com:hashivim/vim-terraform.git
+[submodule "dotvim/vendor/black"]
+	path = dotvim/vendor/black
+	url = git@github.com:psf/black.git
