@@ -44,11 +44,12 @@ mkdir -p "$HOME"/.vimswap
 cp vimrc "$HOME"/.vimrc
 
 #   ...plugins
-declare -a folders=("after" "autoload" "compiler" "indent" "ftdetect" "ftplugin" "syntax")
-for folder in "${folders[@]}"
-do
-  mkdir -p "$HOME"/.vim/"$folder"
-  cp -R dotvim/vendor/*/"$folder"/* "$HOME"/.vim/"$folder"
+mkdir -p ~/.vim/pack/plugins/start
+#   symlink my vendored submodules into the vim packages system
+find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read dir; do
+  if [ ! -e ~/.vim/pack/plugins/start/$(basename $dir) ]; then
+    ln -s $PWD/$dir ~/.vim/pack/plugins/start/$(basename $dir)
+  fi
 done
 
 echo "Your dotfiles have been copied to $HOME"
