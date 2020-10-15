@@ -46,9 +46,10 @@ cp vimrc "$HOME"/.vimrc
 #   ...plugins
 mkdir -p ~/.vim/pack/plugins/start
 #   symlink my vendored submodules into the vim packages system
-find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read dir; do
-  if [ ! -e ~/.vim/pack/plugins/start/$(basename $dir) ]; then
-    ln -s $PWD/$dir ~/.vim/pack/plugins/start/$(basename $dir)
+find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read -r dir; do
+  symlink="$(basename "$dir")"
+  if [ ! -e ~/.vim/pack/plugins/start/"$symlink" ]; then
+    ln -s "$PWD/$dir" ~/.vim/pack/plugins/start/"$symlink"
   fi
 done
 
