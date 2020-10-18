@@ -5,3 +5,7 @@ source ~/.aliases
 # Optional machine-specific shell init
 if [ -e ~/.sh_local ]; source ~/.sh_local;
 end
+
+if test -e /usr/local/bin/brew
+  set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+end
