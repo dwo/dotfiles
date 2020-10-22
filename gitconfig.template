@@ -9,9 +9,10 @@
 	status = auto
 
 [core]
-	whitespace=fix,-indent-with-non-tab,trailing-space
-	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes
 	editor = vim
+	excludesfile = ~/.gitignore
+	whitespace=fix,-indent-with-non-tab,trailing-space
 
 [push]
 	default = current

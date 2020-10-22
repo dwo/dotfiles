@@ -20,6 +20,8 @@ cp aliases "$HOME"/.aliases
 cp shrc "$HOME"/.config/fish/config.fish
 
 # Git
+cp gitattributes ~/.gitattributes
+cp gitignore "$HOME"/.gitignore
 GIT_EMAIL=$(git config --global --get user.email)
 export GIT_EMAIL
 if [ -z "$GIT_EMAIL" ]; then
@@ -34,7 +36,6 @@ if [ -z "$GIT_SIGNINGKEY" ]; then
   export GIT_SIGNINGKEY
 fi
 eval echo "\"$(cat gitconfig.template)\"" > "$HOME"/.gitconfig
-cp gitignore "$HOME"/.gitignore
 
 # Ruby
 cp gemrc "$HOME"/.gemrc
