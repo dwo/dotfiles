@@ -66,3 +66,6 @@ autocmd BufWritePre *.py execute ':Black'
 
 " Terraform formatting
 let g:terraform_fmt_on_save=1
+
+" Javascript Prettier formatting
+let g:prettier#autoformat_config_present=1
