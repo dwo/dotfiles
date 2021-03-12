@@ -1,5 +1,6 @@
 export HISTSIZE=100000
 export GOPATH="$HOME/src"
+set PATH $PATH $GOPATH/bin
 
 source ~/.aliases
 # Optional machine-specific shell init
