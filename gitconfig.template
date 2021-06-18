@@ -8,14 +8,17 @@
 	diff = auto
 	status = auto
 
+[commit]
+	gpgSign = true
+
 [core]
 	attributesfile = ~/.gitattributes
 	editor = vim
 	excludesfile = ~/.gitignore
 	whitespace=fix,-indent-with-non-tab,trailing-space
 
+[fetch]
+	prune = true
+
 [push]
 	default = current
-
-[commit]
-	gpgSign = true
