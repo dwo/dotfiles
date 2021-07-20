@@ -31,3 +31,6 @@
 [submodule "dotvim/vendor/vim-prettier"]
 	path = dotvim/vendor/vim-prettier
 	url = git@github.com:prettier/vim-prettier.git
+[submodule "dotvim/vendor/typescript-vim"]
+	path = dotvim/vendor/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
