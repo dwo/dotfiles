@@ -11,10 +11,14 @@ set colorcolumn=121               " highlight where lines start to get long
 set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
 " Tabbing and Indentation
+filetype indent on
 filetype plugin indent on
 set autoindent             " i'm too lazy to press tab
 set expandtab              " use spaces instead of tabs
+set shiftwidth=2
 set smarttab               " use tabs where appropriate (eg. Makefiles)
+set softtabstop=2
+set tabstop=2
 
 " Searching
 set wrapscan               " search the whole damn file
