@@ -11,11 +11,10 @@ set colorcolumn=121               " highlight where lines start to get long
 set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
 " Tabbing and Indentation
-set expandtab              " use spaces instead of tabs
-set softtabstop=2          " 2 space tabs
-set shiftwidth=2
-set tabstop=2
+filetype plugin indent on
 set autoindent             " i'm too lazy to press tab
+set expandtab              " use spaces instead of tabs
+set smarttab               " use tabs where appropriate (eg. Makefiles)
 
 " Searching
 set wrapscan               " search the whole damn file
@@ -32,7 +31,6 @@ set directory=~/.vimswap/  " Single location for swap files
 set autoread               " auto re-read externally changed buffers
 au InsertEnter * :checkt % " check the file timestamp of the current
                            " buffer (%) when I go into Insert mode
-
 " Status Bar
 set laststatus=2           " Always show status bar
 
