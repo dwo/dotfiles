@@ -34,3 +34,6 @@
 [submodule "dotvim/vendor/typescript-vim"]
 	path = dotvim/vendor/typescript-vim
 	url = git@github.com:leafgarland/typescript-vim.git
+[submodule "dotvim/vendor/vim-ft-bzl"]
+	path = dotvim/vendor/vim-ft-bzl
+	url = git@github.com:bazelbuild/vim-ft-bzl.git
