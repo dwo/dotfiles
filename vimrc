@@ -58,8 +58,16 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-au BufWritePre *.cpp,*.scss,*.css,*.erb,*.feature,*.go,*.js,*.pp,*.py,*.rb,*.xml :call <SID>StripTrailingWhitespaces()
-au BufRead *.go setlocal listchars=trail:·,tab:\ \ 
+autocmd BufWritePre *.cpp,*.scss,*.css,*.go,*.xml :call <SID>StripTrailingWhitespaces()
+
+" Bazel
+autocmd FileType bzl setlocal ts=4 sts=4 sw=4
+
+" Golang
+autocmd BufRead *.go setlocal listchars=trail:·,tab:\ \ 
+
+" Javascript Prettier formatting
+let g:prettier#autoformat_config_present=1
 
 " Python Black formatting
 let g:black_linelength=120
@@ -68,6 +76,3 @@ autocmd BufWritePre *.py execute ':Black'
 
 " Terraform formatting
 let g:terraform_fmt_on_save=1
-
-" Javascript Prettier formatting
-let g:prettier#autoformat_config_present=1
