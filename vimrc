@@ -63,6 +63,9 @@ autocmd BufWritePre *.cpp,*.scss,*.css,*.go,*.xml :call <SID>StripTrailingWhites
 " Bazel
 autocmd FileType bzl setlocal ts=4 sts=4 sw=4
 
+" Git
+autocmd FileType gitcommit setlocal tw=120
+
 " Golang
 autocmd BufRead *.go setlocal listchars=trail:·,tab:\ \ 
 
