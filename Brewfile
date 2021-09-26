@@ -1,5 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
+brew "ansible@2.9"
 brew "coreutils"
 brew "curl"
 brew "fish"
