@@ -37,3 +37,6 @@
 [submodule "dotvim/vendor/vim-ft-bzl"]
 	path = dotvim/vendor/vim-ft-bzl
 	url = git@github.com:bazelbuild/vim-ft-bzl.git
+[submodule "dotvim/vendor/vim-yaml"]
+	path = dotvim/vendor/vim-yaml
+	url = git@github.com:stephpy/vim-yaml.git
