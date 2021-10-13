@@ -11,14 +11,12 @@ set colorcolumn=121               " highlight where lines start to get long
 set list listchars=trail:·,tab:⇥· " make trailing whitespace visible
 
 " Tabbing and Indentation
-filetype indent on
+set autoindent             " Good to have when working with plain text
 filetype plugin indent on
-set autoindent             " i'm too lazy to press tab
-set expandtab              " use spaces instead of tabs
 set shiftwidth=2
-set smarttab               " use tabs where appropriate (eg. Makefiles)
 set softtabstop=2
-set tabstop=2
+set expandtab              " use spaces instead of tabs
+set smarttab               " use tabs where appropriate (eg. Makefiles)
 
 " Searching
 set wrapscan               " search the whole damn file
@@ -46,7 +44,7 @@ set splitright             "   and on the right
 set backspace=2            " ensure backspace works
 set iskeyword+=-           " enable tab completion of dashed words
 
-function! <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces() abort
     " save last search, and cursor position.
     let _s=@/
     let l = line(".")
@@ -58,24 +56,35 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-autocmd BufWritePre *.cpp,*.scss,*.css,*.go,*.xml :call <SID>StripTrailingWhitespaces()
+augroup TrailingWhitespace
+  autocmd!
+  autocmd BufWritePre *.cpp,*.scss,*.css,*.go,*.xml :call <SID>StripTrailingWhitespaces()
+augroup END
 
-" Bazel
-autocmd FileType bzl setlocal ts=4 sts=4 sw=4
+augroup Bazel
+  autocmd!
+  autocmd FileType bzl setlocal tabstop=4 softtabstop=4 shiftwidth=4
+augroup END
 
-" Git
-autocmd FileType gitcommit setlocal tw=120
+augroup Git
+  autocmd!
+  autocmd FileType gitcommit setlocal textwidth=120
+augroup END
 
-" Golang
-autocmd BufRead *.go setlocal listchars=trail:·,tab:\ \ 
+augroup Golang
+  autocmd!
+  autocmd BufRead *.go setlocal listchars=trail:·,tab:\ \ 
+augroup END
 
 " Javascript Prettier formatting
 let g:prettier#autoformat_config_present=1
 
-" Python Black formatting
-let g:black_linelength=120
-let g:black_skip_string_normalization=1
-autocmd BufWritePre *.py execute ':Black'
+augroup Python
+  autocmd!
+  let g:black_linelength=120
+  let g:black_skip_string_normalization=1
+  autocmd BufWritePre *.py execute ':Black'
+augroup END
 
 " Terraform formatting
 let g:terraform_fmt_on_save=1
