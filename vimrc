@@ -2,6 +2,7 @@ set encoding=utf-8
 
 syntax enable                     " Syntax highlighting
 filetype plugin on
+set modeline                      " Respect modelines
 
 " Presentation
 set number                        " I like seeing the line numbers
