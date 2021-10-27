@@ -76,6 +76,11 @@ augroup Golang
   autocmd BufRead *.go setlocal listchars=trail:·,tab:\ \ 
 augroup END
 
+augroup Make
+  autocmd!
+  autocmd FileType make setlocal tabstop=2 softtabstop=2 noexpandtab
+augroup END
+
 " Javascript Prettier formatting
 let g:prettier#autoformat_config_present=1
 
