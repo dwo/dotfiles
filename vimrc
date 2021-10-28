@@ -16,6 +16,7 @@ set autoindent             " Good to have when working with plain text
 filetype plugin indent on
 set shiftwidth=2
 set softtabstop=2
+set tabstop=2
 set expandtab              " use spaces instead of tabs
 set smarttab               " use tabs where appropriate (eg. Makefiles)
 
