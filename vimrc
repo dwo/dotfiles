@@ -91,6 +91,7 @@ augroup Python
   let g:black_linelength=120
   let g:black_skip_string_normalization=1
   autocmd BufWritePre *.py execute ':Black'
+  autocmd BufWritePre *.py execute ':Isort'
 augroup END
 
 " Terraform formatting

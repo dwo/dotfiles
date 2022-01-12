@@ -40,3 +40,6 @@
 [submodule "dotvim/vendor/vim-yaml"]
 	path = dotvim/vendor/vim-yaml
 	url = git@github.com:stephpy/vim-yaml.git
+[submodule "dotvim/vendor/vim-isort"]
+	path = dotvim/vendor/vim-isort
+	url = git@github.com:fisadev/vim-isort.git
