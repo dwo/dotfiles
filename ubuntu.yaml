@@ -1,0 +1,34 @@
+- name: Ubuntu
+  become: yes
+  hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Keys
+    ansible.builtin.apt_key:
+      url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+      state: present
+
+  - name: Repositories
+    ansible.builtin.apt_repository:
+      repo: "{{ item }}"
+      update_cache: no
+    with_items:
+    - "deb http://repository.spotify.com stable non-free"
+    - "ppa:regolith-linux/release"
+
+  - name: Packages
+    ansible.builtin.apt:
+      name:
+      - chromium-browser
+      - fish
+      - i3xrocks-openvpn
+      - regolith-desktop-mobile
+      - screen
+      - spotify-client
+
+  - name: Shell
+    ansible.builtin.user:
+      name: robin
+      shell: /usr/bin/fish
+      state: present
