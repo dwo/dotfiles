@@ -22,13 +22,22 @@
       name:
       - chromium-browser
       - fish
+      - gnome-tweaks
       - i3xrocks-openvpn
       - regolith-desktop-mobile
       - screen
       - spotify-client
+      - variety
 
   - name: Shell
     ansible.builtin.user:
       name: robin
       shell: /usr/bin/fish
       state: present
+
+  - name: Regolith Xresources
+    ansible.builtin.copy:
+      src: files/Xresources
+      dest: /home/robin/.config/regolith/Xresources
+      owner: robin
+      group: robin
