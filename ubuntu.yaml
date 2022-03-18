@@ -28,6 +28,7 @@
       - screen
       - spotify-client
       - variety
+      - vim-gtk # for +clipboard support
 
   - name: Shell
     ansible.builtin.user:
