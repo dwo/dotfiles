@@ -23,6 +23,7 @@
       - chromium-browser
       - fish
       - gnome-tweaks
+      - graphviz
       - regolith-desktop-mobile
       - screen
       - spotify-client
