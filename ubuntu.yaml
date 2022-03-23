@@ -6,26 +6,39 @@
   tasks:
   - name: Keys
     ansible.builtin.apt_key:
-      url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+      url: "{{ item.url }}"
+      keyring: "{{ item.keyring }}"
       state: present
+    with_items:
+    - name: spotify
+      keyring: /etc/apt/trusted.gpg.d/spotify.gpg
+      url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+    - name: signal
+      keyring: /usr/share/keyrings/signal-desktop-keyring.gpg
+      url: https://updates.signal.org/desktop/apt/keys.asc
 
   - name: Repositories
     ansible.builtin.apt_repository:
       repo: "{{ item }}"
       update_cache: no
+    register: repositories
     with_items:
-    - "deb http://repository.spotify.com stable non-free"
-    - "ppa:regolith-linux/release"
+    - deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
+    - deb http://repository.spotify.com stable non-free
+    - ppa:regolith-linux/release
 
   - name: Packages
     ansible.builtin.apt:
+      update_cache: "{{ repositories.changed }}"
       name:
+      - caffeine
       - chromium-browser
       - fish
       - gnome-tweaks
       - graphviz
       - regolith-desktop-mobile
       - screen
+      - signal-desktop
       - spotify-client
       - variety
       - vim-gtk # for +clipboard support
