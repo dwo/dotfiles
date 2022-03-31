@@ -10,3 +10,7 @@ end
 if test -e /usr/local/bin/brew
   set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 end
+
+if test -e /usr/bin/kubectl
+  kubectl completion fish | source
+end
