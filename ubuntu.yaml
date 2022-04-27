@@ -26,6 +26,7 @@
     - deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
     - deb http://repository.spotify.com stable non-free
     - ppa:regolith-linux/release
+    - ppa:system76-dev/stable
 
   - name: Packages
     ansible.builtin.apt:
@@ -41,7 +42,8 @@
       - shellcheck
       - signal-desktop
       - spotify-client
-      - tlp # battery life
+      - system76-power # battery life
+      - tlp            # battery life
       - variety
       - vim-gtk # for +clipboard support
       - xclip
