@@ -60,4 +60,9 @@ find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read -r dir; do
   fi
 done
 
+# Linux gnome-terminal padding
+if [ "$(uname)" == "Linux" ]; then
+  ansible-playbook ubuntu.yaml -K
+fi
+
 echo "Your dotfiles have been copied to $HOME"
