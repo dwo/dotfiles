@@ -3,6 +3,9 @@
 	email = ${GIT_EMAIL}
 	signingkey = ${GIT_SIGNINGKEY}
 
+[branch]
+	autoSetupMerge = always
+
 [color]
 	branch = auto
 	diff = auto
