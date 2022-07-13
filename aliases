@@ -18,5 +18,8 @@ alias gpo='git push origin'
 alias gs='git status'
 alias k='kubectl'
 alias ll='ls -l'
+if test (uname) = "Linux"
+  alias pbcopy='xclip -selection clipboard'
+end
 alias sa='ssh-add -t 8h'
 alias tfip='terraform init -upgrade && terraform plan -lock=false'
