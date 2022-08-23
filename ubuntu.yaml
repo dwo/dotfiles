@@ -31,7 +31,7 @@
       update_cache: no
     register: repositories
     with_items:
-    - deb [arch=amd64] https://regolith-desktop.org/release-ubuntu-focal-amd64 focal main
+    - deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/release-ubuntu-focal-amd64 focal main
     - deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
     - deb http://repository.spotify.com stable non-free
     - ppa:system76-dev/stable
@@ -53,6 +53,7 @@
       - i3xrocks-info
       - i3xrocks-memory
       - i3xrocks-rofication
+      - i3xrocks-time
       - regolith-compositor-picom-glx
       # ... end regolith
       - screen
