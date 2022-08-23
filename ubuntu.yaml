@@ -10,12 +10,20 @@
       keyring: "{{ item.keyring }}"
       state: present
     with_items:
-    - name: spotify
-      keyring: /etc/apt/trusted.gpg.d/spotify.gpg
-      url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
     - name: signal
       keyring: /usr/share/keyrings/signal-desktop-keyring.gpg
       url: https://updates.signal.org/desktop/apt/keys.asc
+    - name: spotify
+      keyring: /etc/apt/trusted.gpg.d/spotify.gpg
+      url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+    - name: regolith
+      keyring: /usr/share/keyrings/regolith-archive-keyring.gpg
+      url: https://regolith-desktop.org/regolith.key
+
+  - name: Remove old repository
+    ansible.builtin.apt_repository:
+      repo: ppa:regolith-linux/release
+      state: absent
 
   - name: Repositories
     ansible.builtin.apt_repository:
@@ -23,9 +31,9 @@
       update_cache: no
     register: repositories
     with_items:
+    - deb [arch=amd64] https://regolith-desktop.org/release-ubuntu-focal-amd64 focal main
     - deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
     - deb http://repository.spotify.com stable non-free
-    - ppa:regolith-linux/release
     - ppa:system76-dev/stable
 
   - name: Packages
@@ -37,7 +45,16 @@
       - fish
       - gnome-tweaks
       - graphviz
-      - regolith-desktop-mobile
+      - regolith-desktop
+      # ...
+      - i3xrocks-app-launcher
+      - i3xrocks-battery
+      - i3xrocks-focused-window-name
+      - i3xrocks-info
+      - i3xrocks-memory
+      - i3xrocks-rofication
+      - regolith-compositor-picom-glx
+      # ... end regolith
       - screen
       - shellcheck
       - signal-desktop
@@ -54,9 +71,16 @@
       shell: /usr/bin/fish
       state: present
 
+  - name: Xresources
+    ansible.builtin.file:
+      dest: /home/robin/.config/regolith2
+      state: directory
+      owner: robin
+      group: robin
+
   - name: Regolith Xresources
     ansible.builtin.copy:
       src: files/Xresources
-      dest: /home/robin/.config/regolith/Xresources
+      dest: /home/robin/.config/regolith2/Xresources
       owner: robin
       group: robin
