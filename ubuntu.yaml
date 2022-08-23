@@ -49,7 +49,6 @@
       # ...
       - i3xrocks-app-launcher
       - i3xrocks-battery
-      - i3xrocks-focused-window-name
       - i3xrocks-info
       - i3xrocks-memory
       - i3xrocks-rofication
