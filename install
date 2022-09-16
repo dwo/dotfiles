@@ -60,8 +60,9 @@ find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read -r dir; do
   fi
 done
 
-# Linux gnome-terminal padding
-if [ "$(uname)" == "Linux" ]; then
+# Ubuntu configuration
+. /etc/lsb-release
+if [ "$DISTRIB_ID" == "Ubuntu" ]; then
   ansible-playbook ubuntu.yaml -K
 fi
 

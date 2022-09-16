@@ -4,6 +4,9 @@
   connection: local
 
   tasks:
+  - ansible.builtin.package_facts: manager=apt
+  - ansible.builtin.set_fact: is_desktop="{{ 'ubuntu-desktop' in ansible_facts.packages }}" cacheable=yes
+
   - name: Keys
     ansible.builtin.apt_key:
       url: "{{ item.url }}"
@@ -19,11 +22,13 @@
     - name: regolith
       keyring: /usr/share/keyrings/regolith-archive-keyring.gpg
       url: https://regolith-desktop.org/regolith.key
+    when: is_desktop
 
   - name: Remove old repository
     ansible.builtin.apt_repository:
       repo: ppa:regolith-linux/release
       state: absent
+    when: is_desktop
 
   - name: Repositories
     ansible.builtin.apt_repository:
@@ -35,18 +40,28 @@
     - deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
     - deb http://repository.spotify.com stable non-free
     - ppa:system76-dev/stable
+    when: is_desktop
 
   - name: Packages
     ansible.builtin.apt:
       update_cache: "{{ repositories.changed }}"
       name:
+      - fish
+      - graphviz
+      - screen
+      - shellcheck
+      - vim-gtk # for +clipboard support
+      - xclip
+
+  - name: Desktop packages
+    ansible.builtin.apt:
+      update_cache: "{{ repositories.changed }}"
+      name:
       - caffeine
       - chromium-browser
-      - fish
       - gnome-tweaks
-      - graphviz
       - regolith-desktop
-      # ...
+      # regolith
       - i3xrocks-app-launcher
       - i3xrocks-battery
       - i3xrocks-info
@@ -55,15 +70,12 @@
       - i3xrocks-time
       - regolith-compositor-picom-glx
       # ... end regolith
-      - screen
-      - shellcheck
       - signal-desktop
       - spotify-client
       - system76-power # battery life
       - tlp            # battery life
       - variety
-      - vim-gtk # for +clipboard support
-      - xclip
+    when: is_desktop
 
   - name: Shell
     ansible.builtin.user:
@@ -77,6 +89,7 @@
       state: directory
       owner: robin
       group: robin
+    when: is_desktop
 
   - name: Regolith Xresources
     ansible.builtin.copy:
@@ -84,3 +97,4 @@
       dest: /home/robin/.config/regolith2/Xresources
       owner: robin
       group: robin
+    when: is_desktop
