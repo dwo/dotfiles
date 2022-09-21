@@ -44,10 +44,13 @@
 
   - name: Packages
     ansible.builtin.apt:
+      install_recommends: no
       update_cache: "{{ repositories.changed }}"
       name:
       - fish
       - graphviz
+      - gnupg
+      - gpg-agent
       - screen
       - shellcheck
       - vim-gtk # for +clipboard support
@@ -55,6 +58,7 @@
 
   - name: Desktop packages
     ansible.builtin.apt:
+      install_recommends: no
       update_cache: "{{ repositories.changed }}"
       name:
       - caffeine
@@ -98,3 +102,10 @@
       owner: robin
       group: robin
     when: is_desktop
+
+  - name: Enable GPG agent forwarding
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: ^StreamLocalBindUnlink
+      line: StreamLocalBindUnlink yes
+    when: not is_desktop
