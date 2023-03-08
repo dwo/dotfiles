@@ -92,6 +92,8 @@ augroup Python
   let g:black_skip_string_normalization=1
   autocmd BufWritePre *.py execute ':Black'
   autocmd BufWritePre *.py execute ':Isort'
+  " let Black handle long lines
+  autocmd FileType python setlocal textwidth=0
 augroup END
 
 " Terraform formatting
