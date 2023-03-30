@@ -63,7 +63,7 @@ done
 # Ubuntu configuration
 . /etc/lsb-release
 if [ "$DISTRIB_ID" == "Ubuntu" ]; then
-  ansible-playbook ubuntu.yaml -K
+  echo ansible-playbook ubuntu.yaml -K
 fi
 
 echo "Your dotfiles have been copied to $HOME"

@@ -25,6 +25,7 @@ set wrapscan               " search the whole damn file
 set ignorecase             " ignore case in searches
 set smartcase              "   unless search has a capital letter
 set incsearch              " search incrementally
+set nohlsearch             " don't highlight search results
 set wildmode=longest,list  " tab completion for filenames
 set suffixesadd=.rb        " suffixes for gf file search
 

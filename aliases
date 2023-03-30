@@ -23,3 +23,4 @@ if test (uname) = "Linux"
 end
 alias sa='ssh-add -t 8h'
 alias tfip='terraform init -upgrade && terraform plan -lock=false'
+alias vim='nvim'
