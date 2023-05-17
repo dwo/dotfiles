@@ -1,5 +1,4 @@
 # Code
-coverage*
 tags
 
 # IntelliJ
@@ -32,4 +31,3 @@ vendor/bundle
 .*.swo
 .*.swp
 .swo
-

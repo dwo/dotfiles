@@ -46,3 +46,6 @@
 [submodule "dotvim/vendor/vim-python-pep8-indent"]
 	path = dotvim/vendor/vim-python-pep8-indent
 	url = git@github.com:Vimjas/vim-python-pep8-indent.git
+[submodule "dotvim/vendor/vim-vinegar"]
+	path = dotvim/vendor/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git
