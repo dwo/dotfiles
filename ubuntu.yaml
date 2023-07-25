@@ -13,12 +13,6 @@
       keyring: "{{ item.keyring }}"
       state: present
     with_items:
-    - name: signal
-      keyring: /usr/share/keyrings/signal-desktop-keyring.gpg
-      url: https://updates.signal.org/desktop/apt/keys.asc
-    - name: spotify
-      keyring: /etc/apt/trusted.gpg.d/spotify.gpg
-      url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
     - name: regolith
       keyring: /usr/share/keyrings/regolith-archive-keyring.gpg
       url: https://regolith-desktop.org/regolith.key
@@ -37,8 +31,6 @@
     register: repositories
     with_items:
     - deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/release-ubuntu-focal-amd64 focal main
-    - deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main
-    - deb http://repository.spotify.com stable non-free
     - ppa:system76-dev/stable
     when: is_desktop
 
@@ -74,8 +66,6 @@
       - i3xrocks-time
       - regolith-compositor-picom-glx
       # ... end regolith
-      - signal-desktop
-      - spotify-client
       - system76-power # battery life
       - tlp            # battery life
       - variety
