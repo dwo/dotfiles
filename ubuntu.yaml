@@ -56,8 +56,8 @@
       - caffeine
       - chromium-browser
       - gnome-tweaks
-      - regolith-desktop
       # regolith
+      - regolith-desktop
       - i3xrocks-app-launcher
       - i3xrocks-battery
       - i3xrocks-info
