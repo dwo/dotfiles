@@ -49,3 +49,6 @@
 [submodule "dotvim/vendor/vim-vinegar"]
 	path = dotvim/vendor/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule "dotvim/vendor/copilot.vim"]
+	path = dotvim/vendor/copilot.vim
+	url = https://github.com/github/copilot.vim.git

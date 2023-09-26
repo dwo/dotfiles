@@ -20,6 +20,9 @@
 	excludesfile = ~/.gitignore
 	whitespace=fix,-indent-with-non-tab,trailing-space
 
+[init]
+	defaultBranch = main
+
 [fetch]
 	prune = true
 
