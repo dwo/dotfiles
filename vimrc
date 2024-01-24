@@ -46,6 +46,7 @@ set splitright             "   and on the right
 " Input
 set backspace=2            " ensure backspace works
 set iskeyword+=-           " enable tab completion of dashed words
+set mouse=                 " disable the mouse in nvim
 
 function! <SID>StripTrailingWhitespaces() abort
     " save last search, and cursor position.
