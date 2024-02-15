@@ -21,6 +21,10 @@
 [init]
 	defaultBranch = main
 
+[maintenance]
+	auto = false
+	strategy = incremental
+
 [push]
 	default = current
 
