@@ -65,9 +65,11 @@ find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read -r dir; do
 done
 
 # Ubuntu configuration
-. /etc/lsb-release
-if [ "$DISTRIB_ID" == "Ubuntu" ]; then
-  echo ansible-playbook ubuntu.yaml -K
+if [ -e /etc/lsb-release ]; then
+  . /etc/lsb-release
+  if [ "$DISTRIB_ID" == "Ubuntu" ]; then
+    echo ansible-playbook ubuntu.yaml -K
+  fi
 fi
 
 echo "Your dotfiles have been copied to $HOME"
