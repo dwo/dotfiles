@@ -52,7 +52,7 @@ cp vimrc "$HOME"/.vimrc
 mkdir -p "$HOME"/.config/nvim
 cp init.vim "$HOME"/.config/nvim/init.vim
 
-pip3 install --user --quiet pynvim isort
+pip3 install --user --quiet pynvim isort --break-system-packages
 
 #   ...plugins
 mkdir -p ~/.vim/pack/plugins/start
