@@ -40,9 +40,6 @@
 [submodule "dotvim/vendor/vim-yaml"]
 	path = dotvim/vendor/vim-yaml
 	url = git@github.com:stephpy/vim-yaml.git
-[submodule "dotvim/vendor/vim-isort"]
-	path = dotvim/vendor/vim-isort
-	url = git@github.com:fisadev/vim-isort.git
 [submodule "dotvim/vendor/vim-python-pep8-indent"]
 	path = dotvim/vendor/vim-python-pep8-indent
 	url = git@github.com:Vimjas/vim-python-pep8-indent.git
@@ -52,3 +49,6 @@
 [submodule "dotvim/vendor/copilot.vim"]
 	path = dotvim/vendor/copilot.vim
 	url = https://github.com/github/copilot.vim.git
+[submodule "dotvim/vendor/isort.vim"]
+	path = dotvim/vendor/isort.vim
+	url = git@github.com:brentyi/isort.vim.git
