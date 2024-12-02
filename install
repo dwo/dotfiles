@@ -9,7 +9,7 @@ if [ "$(uname)" == "Darwin" ]; then
     echo "Please install homebrew."
     exit 1
   fi
-  brew bundle
+  brew bundle --quiet
 fi
 
 # Shell
@@ -72,6 +72,7 @@ done
 
 # Ubuntu configuration
 if [ -e /etc/lsb-release ]; then
+  # shellcheck disable=SC1091
   . /etc/lsb-release
   if [ "$DISTRIB_ID" == "Ubuntu" ]; then
     echo ansible-playbook ubuntu.yaml -K

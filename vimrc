@@ -92,8 +92,8 @@ augroup Python
   autocmd!
   let g:black_linelength=120
   let g:black_quiet=1
-  autocmd BufWritePre *.py execute ':Black'
-  autocmd BufWritePre *.py execute ':Isort'
+  " autocmd BufWritePre *.py execute ':Black'
+  " autocmd BufWritePre *.py execute ':Isort'
   " let Black handle long lines
   autocmd FileType python setlocal textwidth=0
 augroup END
