@@ -49,3 +49,9 @@
 [submodule "dotvim/vendor/isort.vim"]
 	path = dotvim/vendor/isort.vim
 	url = git@github.com:brentyi/isort.vim.git
+[submodule "dotvim/vendor/coc.nvim"]
+	path = dotvim/vendor/coc.nvim
+	url = git@github.com:neoclide/coc.nvim.git
+[submodule "dotvim/vendor/ale"]
+	path = dotvim/vendor/ale
+	url = git@github.com:dense-analysis/ale.git
