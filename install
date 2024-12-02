@@ -64,6 +64,11 @@ find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read -r dir; do
   fi
 done
 
+mkdir -p ~/.vim/ftplugin
+find dotvim/ftplugin -maxdepth 1 -mindepth 1 -type f | while read -r ftplugin; do
+  cp "$ftplugin" ~/.vim/ftplugin/.
+done
+
 # Ubuntu configuration
 if [ -e /etc/lsb-release ]; then
   . /etc/lsb-release
