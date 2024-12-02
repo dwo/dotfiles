@@ -52,6 +52,7 @@
 [submodule "dotvim/vendor/coc.nvim"]
 	path = dotvim/vendor/coc.nvim
 	url = git@github.com:neoclide/coc.nvim.git
+	branch = release
 [submodule "dotvim/vendor/ale"]
 	path = dotvim/vendor/ale
 	url = git@github.com:dense-analysis/ale.git
