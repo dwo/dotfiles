@@ -24,7 +24,6 @@ fi
 
 # GNU Screen
 cp screenrc "$HOME"/.screenrc
-cp tmux.conf "$HOME"/.tmux.conf
 
 # Git
 cp gitattributes ~/.gitattributes
