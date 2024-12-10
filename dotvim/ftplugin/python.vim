@@ -1,2 +1,2 @@
-let b:ale_fixers = ['autoflake', 'black', 'isort', 'ruff']
-let b:ale_linters = ['mypy', 'ruff']
+let b:ale_fixers = ['autoflake', 'black', 'isort', 'ruff', 'ruff_format']
+let b:ale_linters = ['bandit', 'mypy', 'pylint', 'ruff', 'vulture']
