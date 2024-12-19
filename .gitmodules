@@ -52,3 +52,6 @@
 [submodule "dotvim/vendor/ale"]
 	path = dotvim/vendor/ale
 	url = git@github.com:dense-analysis/ale.git
+[submodule "dotvim/vendor/copilot.vim"]
+	path = dotvim/vendor/copilot.vim
+	url = git@github.com:github/copilot.vim.git
