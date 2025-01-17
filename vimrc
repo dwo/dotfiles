@@ -97,6 +97,3 @@ augroup Python
   " let Black handle long lines
   autocmd FileType python setlocal textwidth=0
 augroup END
-
-" Terraform formatting
-let g:terraform_fmt_on_save=1
