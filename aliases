@@ -23,5 +23,6 @@ if test (uname) = "Linux"
 end
 alias sa='ssh-add -t 8h'
 alias terraform='tofu'
+alias terraform-fmt='tofu fmt'
 alias tfip='tofu init -upgrade && tofu plan -lock=false'
 alias vim='nvim'

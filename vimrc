@@ -97,3 +97,5 @@ augroup Python
   " let Black handle long lines
   autocmd FileType python setlocal textwidth=0
 augroup END
+
+let g:ale_terraform_fmt_executable = 'tofu'

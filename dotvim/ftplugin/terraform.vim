@@ -1,2 +1,2 @@
-let b:ale_fixers = ['tofu fmt']
-let b:ale_linters = ['tflint', 'tfsec']
+let b:ale_fixers = ['terraform']
+let b:ale_linters = ['checkov', 'tflint', 'tfsec']
