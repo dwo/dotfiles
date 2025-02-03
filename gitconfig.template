@@ -18,6 +18,9 @@
 [fetch]
 	prune = true
 
+[gpg]
+	format = ssh
+
 [init]
 	defaultBranch = main
 
