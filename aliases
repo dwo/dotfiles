@@ -22,7 +22,5 @@ if test (uname) = "Linux"
   alias pbcopy='xclip -selection clipboard'
 end
 alias sa='ssh-add -t 8h'
-alias terraform='tofu'
-alias terraform-fmt='tofu fmt'
-alias tfip='tofu init -upgrade && tofu plan -lock=false'
+alias tfip='terraform init -upgrade && terraform plan -lock=false'
 alias vim='nvim'
