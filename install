@@ -43,6 +43,9 @@ if [ -z "$GIT_SIGNINGKEY" ]; then
 fi
 eval echo "\"$(cat gitconfig.template)\"" > "$HOME"/.gitconfig
 
+# Terraform
+cp terraformrc "$HOME/.terraformrc"
+
 # Vim
 mkdir -p "$HOME"/.vimswap
 cp vimrc "$HOME"/.vimrc
