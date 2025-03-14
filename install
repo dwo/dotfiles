@@ -16,6 +16,7 @@ fi
 # Shell
 cp aliases "$HOME"/.aliases
 cp shrc "$HOME"/.config/fish/config.fish
+cp starship.toml "$HOME"/.config/starship.toml
 
 # Linux gnome-terminal padding
 if [ "$(uname)" == "Linux" ]; then

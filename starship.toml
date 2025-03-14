@@ -1,0 +1,33 @@
+add_newline = false
+
+[cmd_duration]
+format = '\[[$duration]($style)\] '
+
+[kubernetes]
+disabled = false
+# display in square brackets instead
+format = '\[[$symbol$context( \($namespace\))]($style)\] '
+style = "blue"
+
+[directory]
+fish_style_pwd_dir_length = 1
+truncation_length = 2
+
+[git_branch]
+format = '[$symbol$branch]($style) '
+
+[python]
+format = '[$symbol(\($virtualenv\) )]($style) '
+
+# stuff I don't want
+[gcloud]
+disabled = true
+
+[line_break]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[terraform]
+disabled = true

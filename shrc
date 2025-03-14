@@ -13,6 +13,8 @@ end
 
 source ~/.aliases
 
+starship init fish | source
+
 # Optional machine-specific shell init
 if [ -e ~/.sh_local ]; source ~/.sh_local;
 end
