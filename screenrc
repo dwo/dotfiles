@@ -1,9 +1,8 @@
 startup_message off
 defscrollback 50000
-hardstatus alwayslastline 
+hardstatus alwayslastline
 
 hardstatus string "%{= KW} %{= Kw}%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%c %D, %M %d %Y"
-#hardstatus string "%{=b}%{G} Screen(s): %{b}%w %=%{G}%c  %D, %M %d %Y"
 termcapinfo xterm* ti@:te@
 
 # Allow 256 colors
