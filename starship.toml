@@ -16,8 +16,14 @@ truncation_length = 2
 [git_branch]
 format = '[$symbol$branch]($style) '
 
+[hostname]
+format = '[$hostname$ssh_symbol]($style)'
+
 [python]
 format = '[$symbol(\($virtualenv\) )]($style) '
+
+[username]
+format = '[$user]($style)@'
 
 # stuff I don't want
 [gcloud]
