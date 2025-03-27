@@ -29,6 +29,9 @@ format = '[$user]($style)@'
 [gcloud]
 disabled = true
 
+[helm]
+disabled = true
+
 [line_break]
 disabled = true
 
