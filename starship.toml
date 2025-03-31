@@ -38,5 +38,8 @@ disabled = true
 [nodejs]
 disabled = true
 
+[package]
+disabled = true
+
 [terraform]
 disabled = true
