@@ -26,6 +26,9 @@ format = '[$symbol(\($virtualenv\) )]($style) '
 format = '[$user]($style)@'
 
 # stuff I don't want
+[cmake]
+disabled = true
+
 [gcloud]
 disabled = true
 
