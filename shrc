@@ -4,12 +4,14 @@ export GOPATH="$HOME/src"
 set PATH $PATH $GOPATH/bin
 
 if test -e /usr/local/bin/brew
-  set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+  fish_add_path "/usr/local/sbin"
 end
 
 if test -e /opt/homebrew/bin/brew
-  set -g fish_user_paths "/opt/homebrew/bin" $fish_user_paths
+  fish_add_path "/opt/homebrew/bin"
 end
+
+fish_add_path "~/.local/bin"
 
 source ~/.aliases
 
