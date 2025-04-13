@@ -11,6 +11,10 @@ if test -e /opt/homebrew/bin/brew
   fish_add_path "/opt/homebrew/bin"
 end
 
+if test -e /usr/local/opt/node@22/bin
+  fish_add_path /usr/local/opt/node@22/bin
+end
+
 fish_add_path "~/.local/bin"
 
 source ~/.aliases

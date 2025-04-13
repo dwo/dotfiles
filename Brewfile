@@ -1,10 +1,10 @@
 tap "homebrew/bundle"
 tap "hashicorp/tap"
+
 brew "ansible"
 brew "coreutils"
 brew "curl"
 brew "fish"
-# brew "font-hack-nerd-font"
 brew "git"
 brew "hadolint"
 brew "hashicorp/tap/terraform"
@@ -29,3 +29,5 @@ brew "xz"
 brew "yamlfmt"
 brew "yq"
 brew "zlib"
+
+cask "font-hack-nerd-font"

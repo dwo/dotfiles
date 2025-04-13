@@ -10,7 +10,6 @@ if [ "$(uname)" == "Darwin" ]; then
     exit 1
   fi
   brew bundle --quiet
-  brew link node@22 --quiet
 fi
 
 # Shell
