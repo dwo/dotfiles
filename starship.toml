@@ -1,5 +1,22 @@
 add_newline = false
 
+format = """
+$kubernetes\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$python\
+$cmd_duration\
+$jobs\
+$status\
+$character
+"""
+
 [cmd_duration]
 format = '\[[$duration]($style)\] '
 
@@ -24,20 +41,3 @@ format = '[$symbol(\($virtualenv\) )]($style) '
 
 [username]
 format = '[$user]($style)@'
-
-format = """
-$kubernetes\
-$username\
-$hostname\
-$directory\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
-$python\
-$cmd_duration\
-$jobs\
-$status\
-$character
-"""
