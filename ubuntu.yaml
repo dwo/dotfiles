@@ -7,7 +7,27 @@
   - ansible.builtin.package_facts: manager=apt
   - ansible.builtin.set_fact: is_desktop="{{ 'ubuntu-desktop' in ansible_facts.packages }}" cacheable=yes
 
-  - name: Keys
+  - name: Repositories
+    ansible.builtin.apt_repository:
+      repo: "{{ item }}"
+      update_cache: no
+    register: repositories
+    with_items:
+    - ppa:neovim-ppa/unstable
+
+  - name: Packages
+    ansible.builtin.apt:
+      install_recommends: no
+      update_cache: "{{ repositories.changed }}"
+      name:
+      - fish
+      - graphviz
+      - neovim
+      - screen
+      - shellcheck
+      - xclip
+
+  - name: Desktop Keys
     ansible.builtin.apt_key:
       url: "{{ item.url }}"
       keyring: "{{ item.keyring }}"
@@ -18,13 +38,7 @@
       url: https://regolith-desktop.org/regolith.key
     when: is_desktop
 
-  - name: Remove old repository
-    ansible.builtin.apt_repository:
-      repo: ppa:regolith-linux/release
-      state: absent
-    when: is_desktop
-
-  - name: Repositories
+  - name: Desktop Repositories
     ansible.builtin.apt_repository:
       repo: "{{ item }}"
       update_cache: no
@@ -33,20 +47,6 @@
     - deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/release-ubuntu-focal-amd64 focal main
     - ppa:system76-dev/stable
     when: is_desktop
-
-  - name: Packages
-    ansible.builtin.apt:
-      install_recommends: no
-      update_cache: "{{ repositories.changed }}"
-      name:
-      - fish
-      - graphviz
-      - gnupg
-      - gpg-agent
-      - screen
-      - shellcheck
-      - vim-gtk # for +clipboard support
-      - xclip
 
   - name: Desktop packages
     ansible.builtin.apt:
