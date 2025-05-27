@@ -33,6 +33,9 @@ truncation_length = 2
 [git_branch]
 format = '[$symbol$branch]($style) '
 
+[git_commit]
+tag_disabled = false
+
 [hostname]
 format = '[$hostname$ssh_symbol]($style)'
 
