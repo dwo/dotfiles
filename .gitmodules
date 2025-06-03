@@ -1,6 +1,3 @@
-[submodule "dotvim/vendor/vim-ruby"]
-	path = dotvim/vendor/vim-ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "dotvim/vendor/css.vim"]
 	path = dotvim/vendor/css.vim
 	url = https://github.com/JulesWang/css.vim.git
@@ -25,18 +22,9 @@
 [submodule "dotvim/vendor/vim-terraform"]
 	path = dotvim/vendor/vim-terraform
 	url = git@github.com:hashivim/vim-terraform.git
-[submodule "dotvim/vendor/black"]
-	path = dotvim/vendor/black
-	url = git@github.com:psf/black.git
-[submodule "dotvim/vendor/vim-prettier"]
-	path = dotvim/vendor/vim-prettier
-	url = git@github.com:prettier/vim-prettier.git
 [submodule "dotvim/vendor/typescript-vim"]
 	path = dotvim/vendor/typescript-vim
 	url = git@github.com:leafgarland/typescript-vim.git
-[submodule "dotvim/vendor/vim-ft-bzl"]
-	path = dotvim/vendor/vim-ft-bzl
-	url = git@github.com:bazelbuild/vim-ft-bzl.git
 [submodule "dotvim/vendor/vim-yaml"]
 	path = dotvim/vendor/vim-yaml
 	url = git@github.com:stephpy/vim-yaml.git
@@ -46,9 +34,6 @@
 [submodule "dotvim/vendor/vim-vinegar"]
 	path = dotvim/vendor/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
-[submodule "dotvim/vendor/isort.vim"]
-	path = dotvim/vendor/isort.vim
-	url = git@github.com:brentyi/isort.vim.git
 [submodule "dotvim/vendor/ale"]
 	path = dotvim/vendor/ale
 	url = git@github.com:dense-analysis/ale.git
