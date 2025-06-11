@@ -48,3 +48,8 @@
     ansible.builtin.shell:
       creates: /usr/local/bin/starship
       cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
+
+  - name: Install uv
+    ansible.builtin.shell:
+      creates: "/home/{{ user }}/.local/bin/uv"
+      cmd: curl -LsSf https://astral.sh/uv/install.sh | sh
