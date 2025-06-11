@@ -5,7 +5,6 @@
 
   tasks:
   - ansible.builtin.package_facts: manager=apt
-  - ansible.builtin.set_fact: is_desktop="{{ 'ubuntu-desktop' in ansible_facts.packages }}" cacheable=yes
 
   - name: Repositories
     ansible.builtin.apt_repository:
@@ -20,6 +19,7 @@
       install_recommends: no
       update_cache: "{{ repositories.changed }}"
       name:
+      - curl
       - fish
       - graphviz
       - neovim
@@ -27,75 +27,13 @@
       - shellcheck
       - xclip
 
-  - name: Desktop Keys
-    ansible.builtin.apt_key:
-      url: "{{ item.url }}"
-      keyring: "{{ item.keyring }}"
-      state: present
-    with_items:
-    - name: regolith
-      keyring: /usr/share/keyrings/regolith-archive-keyring.gpg
-      url: https://regolith-desktop.org/regolith.key
-    when: is_desktop
-
-  - name: Desktop Repositories
-    ansible.builtin.apt_repository:
-      repo: "{{ item }}"
-      update_cache: no
-    register: repositories
-    with_items:
-    - deb [arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] https://regolith-desktop.org/release-ubuntu-focal-amd64 focal main
-    - ppa:system76-dev/stable
-    when: is_desktop
-
-  - name: Desktop packages
-    ansible.builtin.apt:
-      install_recommends: no
-      update_cache: "{{ repositories.changed }}"
-      name:
-      - caffeine
-      - chromium-browser
-      - gnome-tweaks
-      # regolith
-      - regolith-desktop
-      - i3xrocks-app-launcher
-      - i3xrocks-battery
-      - i3xrocks-info
-      - i3xrocks-memory
-      - i3xrocks-rofication
-      - i3xrocks-time
-      - regolith-compositor-picom-glx
-      # ... end regolith
-      - system76-power # battery life
-      - tlp            # battery life
-      - variety
-    when: is_desktop
-
-  - name: Shell
+  - name: Configure Shell
     ansible.builtin.user:
-      name: robin
+      name: ubuntu
       shell: /usr/bin/fish
       state: present
 
-  - name: Xresources
-    ansible.builtin.file:
-      dest: /home/robin/.config/regolith2
-      state: directory
-      owner: robin
-      group: robin
-    when: is_desktop
-
-  - name: Regolith Xresources
-    ansible.builtin.copy:
-      src: files/Xresources
-      dest: /home/robin/.config/regolith2/Xresources
-      owner: robin
-      group: robin
-    when: is_desktop
-
-  - name: Enable GPG agent forwarding
-    ansible.builtin.lineinfile:
-      path: /etc/ssh/sshd_config
-      regexp: ^StreamLocalBindUnlink
-      line: StreamLocalBindUnlink yes
-    when: not is_desktop
+  - name: Install starship
+    ansible.builtin.shell:
+      creates: /usr/local/bin/starship
+      cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y

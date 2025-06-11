@@ -14,6 +14,7 @@ fi
 
 # Shell
 cp aliases "$HOME"/.aliases
+mkdir -p "$HOME"/.config/fish
 cp shrc "$HOME"/.config/fish/config.fish
 cp starship.toml "$HOME"/.config/starship.toml
 
@@ -32,13 +33,13 @@ cp gitignore "$HOME"/.gitignore
 GIT_EMAIL=$(git config --global --get user.email)
 export GIT_EMAIL
 if [ -z "$GIT_EMAIL" ]; then
-  read -r -p "Email for Git: " email
+  read -r -p "Email for Git (<user>@users.noreply.github.com): " email
   export GIT_EMAIL=$email
 fi
 GIT_SIGNINGKEY=$(git config --global --get user.signingkey)
 export GIT_SIGNINGKEY
 if [ -z "$GIT_SIGNINGKEY" ]; then
-  read -r -p "Signing Key for Git: " signingkey
+  read -r -p "Signing Key for Git (from ssh-add -L): " signingkey
   GIT_SIGNINGKEY=$signingkey
   export GIT_SIGNINGKEY
 fi
@@ -73,7 +74,13 @@ if [ -e /etc/lsb-release ]; then
   # shellcheck disable=SC1091
   . /etc/lsb-release
   if [ "$DISTRIB_ID" == "Ubuntu" ]; then
-    echo ansible-playbook ubuntu.yaml -K
+    if [ ! -e /usr/bin/ansible-playbook ]; then
+      sudo apt update
+      sudo apt install software-properties-common --yes
+      sudo add-apt-repository --yes --update ppa:ansible/ansible
+      sudo apt install ansible-core --yes
+    fi
+    ansible-playbook ubuntu.yaml -K
   fi
 fi
 
