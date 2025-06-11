@@ -2,9 +2,19 @@
   become: yes
   hosts: localhost
   connection: local
+  vars_prompt:
+  - name: "user"
+    prompt: "Enter the username to configure"
+    private: no
 
   tasks:
   - ansible.builtin.package_facts: manager=apt
+
+  - name: Configure Nodesoource repository
+    ansible.builtin.shell:
+      creates: /etc/apt/sources.list.d/nodesource.list
+      cmd: curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    register: nodesource_repo
 
   - name: Repositories
     ansible.builtin.apt_repository:
@@ -17,19 +27,20 @@
   - name: Packages
     ansible.builtin.apt:
       install_recommends: no
-      update_cache: "{{ repositories.changed }}"
+      update_cache: "{{ nodesource_repo.changed or repositories.changed }}"
       name:
       - curl
       - fish
       - graphviz
       - neovim
+      - nodejs
       - screen
       - shellcheck
       - xclip
 
   - name: Configure Shell
     ansible.builtin.user:
-      name: ubuntu
+      name: "{{ user }}"
       shell: /usr/bin/fish
       state: present
 

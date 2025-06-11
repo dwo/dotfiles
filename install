@@ -80,7 +80,7 @@ if [ -e /etc/lsb-release ]; then
       sudo add-apt-repository --yes --update ppa:ansible/ansible
       sudo apt install ansible-core --yes
     fi
-    ansible-playbook ubuntu.yaml -K
+    ansible-playbook ubuntu.yaml -K -e "user=$(whoami)"
   fi
 fi
 
