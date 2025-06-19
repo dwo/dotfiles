@@ -1,3 +1,6 @@
+# ignore .claude dirs at any level
+.claude/
+
 # Code
 tags
 
