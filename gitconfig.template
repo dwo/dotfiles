@@ -29,6 +29,7 @@
 	strategy = incremental
 
 [push]
+	autoSetupRemote = true
 	default = current
 
 [rerere]
