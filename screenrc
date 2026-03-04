@@ -5,8 +5,10 @@ hardstatus alwayslastline
 hardstatus string "%{= KW} %{= Kw}%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%c %D, %M %d %Y"
 termcapinfo xterm* ti@:te@
 
-# Allow 256 colors
+# Enable truecolor support
+truecolor on
+term "xterm-256color"
 attrcolor b ".I"
-termcapinfo xterm-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce on
 
 shell -${SHELL}
