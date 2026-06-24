@@ -48,6 +48,14 @@ eval echo "\"$(cat gitconfig.template)\"" > "$HOME"/.gitconfig
 # Terraform
 cp terraformrc "$HOME/.terraformrc"
 
+# Agent instructions
+mkdir -p "$HOME"/.config
+cp AGENTS.md "$HOME"/.config/AGENTS.md
+mkdir -p "$HOME"/.claude
+ln -sfn "$HOME"/.config/AGENTS.md "$HOME"/.claude/CLAUDE.md
+mkdir -p "$HOME"/.codex
+ln -sfn "$HOME"/.config/AGENTS.md "$HOME"/.codex/AGENTS.md
+
 # Vim
 mkdir -p "$HOME"/.vimswap
 cp vimrc "$HOME"/.vimrc
