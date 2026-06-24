@@ -13,8 +13,9 @@
 - Add options, variables, or helpers only when something actually varies in practice.
 - Abstract repeated code only after the third real occurrence.
 - Add comments only when the code itself cannot reasonably be made clearer.
+- When adding dependencies, check what the latest compatible versions are before pinning.
 
-## Git And Files
+## Git and Files
 
 - Use branches and git worktrees to isolate agent sessions.
 - Do not amend commits unless the change is small and the existing message remains accurate.
