@@ -31,19 +31,18 @@ cp screenrc "$HOME"/.screenrc
 cp gitattributes ~/.gitattributes
 cp gitignore "$HOME"/.gitignore
 GIT_EMAIL=$(git config --global --get user.email)
-export GIT_EMAIL
 if [ -z "$GIT_EMAIL" ]; then
   read -r -p "Email for Git (<user>@users.noreply.github.com): " email
-  export GIT_EMAIL=$email
+  GIT_EMAIL=$email
 fi
 GIT_SIGNINGKEY=$(git config --global --get user.signingkey)
-export GIT_SIGNINGKEY
 if [ -z "$GIT_SIGNINGKEY" ]; then
   read -r -p "Signing Key for Git (from ssh-add -L): " signingkey
   GIT_SIGNINGKEY=$signingkey
-  export GIT_SIGNINGKEY
 fi
-eval echo "\"$(cat gitconfig.template)\"" > "$HOME"/.gitconfig
+cp gitconfig.template "$HOME"/.gitconfig
+git config --file "$HOME"/.gitconfig user.email "$GIT_EMAIL"
+git config --file "$HOME"/.gitconfig user.signingkey "$GIT_SIGNINGKEY"
 
 # Terraform
 cp terraformrc "$HOME/.terraformrc"

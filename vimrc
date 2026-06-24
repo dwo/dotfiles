@@ -2,7 +2,7 @@ set encoding=utf-8
 
 syntax enable                     " Syntax highlighting
 filetype plugin on
-set modeline                      " Respect modelines
+set nomodeline                    " Do not trust per-file editor config
 
 " Presentation
 set number                        " I like seeing the line numbers

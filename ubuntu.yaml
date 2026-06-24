@@ -10,10 +10,33 @@
   tasks:
   - ansible.builtin.package_facts: manager=apt
 
-  - name: Configure Nodesoource repository
-    ansible.builtin.shell:
-      creates: /etc/apt/sources.list.d/nodesource.list
-      cmd: curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+  - name: Repository prerequisites
+    ansible.builtin.apt:
+      install_recommends: no
+      update_cache: yes
+      name:
+      - ca-certificates
+      - curl
+      - gnupg
+
+  - name: NodeSource keyring directory
+    ansible.builtin.file:
+      path: /etc/apt/keyrings
+      state: directory
+      mode: "0755"
+
+  - name: NodeSource signing key
+    ansible.builtin.get_url:
+      url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
+      dest: /etc/apt/keyrings/nodesource.asc
+      mode: "0644"
+    register: nodesource_key
+
+  - name: NodeSource repository
+    ansible.builtin.apt_repository:
+      repo: "deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_22.x nodistro main"
+      filename: nodesource
+      update_cache: no
     register: nodesource_repo
 
   - name: Repositories
@@ -27,13 +50,14 @@
   - name: Packages
     ansible.builtin.apt:
       install_recommends: no
-      update_cache: "{{ nodesource_repo.changed or repositories.changed }}"
+      update_cache: "{{ nodesource_key.changed or nodesource_repo.changed or repositories.changed }}"
       name:
-      - curl
       - fish
       - graphviz
       - neovim
       - nodejs
+      - pipx
+      - python3-venv
       - screen
       - shellcheck
       - xclip
@@ -50,6 +74,10 @@
       cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
 
   - name: Install uv
-    ansible.builtin.shell:
+    become_user: "{{ user }}"
+    ansible.builtin.command:
       creates: "/home/{{ user }}/.local/bin/uv"
-      cmd: curl -LsSf https://astral.sh/uv/install.sh | sh
+      cmd: pipx install uv
+    environment:
+      PIPX_BIN_DIR: "/home/{{ user }}/.local/bin"
+      PIPX_HOME: "/home/{{ user }}/.local/share/pipx"
