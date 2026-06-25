@@ -23,6 +23,7 @@
 - Include durable context such as behavior, constraints, tradeoffs, issue links, and rationale.
 - Exclude transient context such as what the user just said, what the agent tried first, rejected approaches, and references to the current session.
 - When editing a PR description, fetch the latest existing body first.
+- Do not include exhaustive lists of local validations in PR descriptions.
 
 ## Commands
 
