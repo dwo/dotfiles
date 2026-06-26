@@ -17,7 +17,7 @@
 
 ## Git and Files
 
-- Use branches and git worktrees to isolate agent sessions.
+- Use branches and git worktrees under `<project>/.worktrees` to isolate agent sessions.
 - Do not amend commits unless the change is small and the existing message remains accurate.
 - In durable artifacts such as comments, docs, commit messages, and PR descriptions, write for a future reader with no access to the current chat.
 - Include durable context such as behavior, constraints, tradeoffs, issue links, and rationale.
