@@ -8,6 +8,8 @@
 
 - Bias toward correct, maintainable solutions over the shortest path to the current goal.
 - Keep changes scoped to the request.
+- Continue pursuing the current task until it is complete, genuinely blocked, or a decision or approval is needed from the user.
+- When the next step is clear and in scope, take it instead of pausing to report that it could be done.
 - Ask before making extra changes, and explain why they are required.
 - Prefer existing project patterns over new abstractions.
 - Add options, variables, or helpers only when something actually varies in practice.
