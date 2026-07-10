@@ -29,8 +29,8 @@
 
 ## Commands
 
-- Use `fish` syntax for interactive shell commands unless another shell is specified.
-- Use the syntax required by the execution context for scripts, CI, and tool calls.
+- When suggesting commands for the user to run locally, use `fish` syntax unless another shell is specified.
+- When writing commands in documentation, use portable syntax supported by common shells such as `bash` and `zsh` unless the documentation targets a specific shell.
 - When running CLI commands, put global flags after the subcommand or action.
   For example, use `kubectl get pods --context foo` instead of `kubectl --context foo get pods`.
 - Avoid `git -C`; run git commands from the intended working directory instead.
