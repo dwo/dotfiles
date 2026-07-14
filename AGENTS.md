@@ -24,6 +24,7 @@
 - In durable artifacts such as comments, docs, commit messages, and PR descriptions, write for a future reader with no access to the current chat.
 - Include durable context such as behavior, constraints, tradeoffs, issue links, and rationale.
 - Exclude transient context such as what the user just said, what the agent tried first, rejected approaches, and references to the current session.
+- Never post GitHub comments or reviews on the user's behalf.
 - When editing a PR description, fetch the latest existing body first.
 - Do not include exhaustive lists of local validations in PR descriptions.
 
