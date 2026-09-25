@@ -35,3 +35,6 @@ vendor/bundle
 .*.swo
 .*.swp
 .swo
+
+# Git
+.worktrees
