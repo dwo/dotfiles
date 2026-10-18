@@ -16,6 +16,7 @@
 
 - Isolate sessions in branches and worktrees under `<project>/.worktrees`.
 - Amend small changes when the existing commit message remains accurate.
+- Never skip commit signing; ask me to unlock the key if needed.
 - Write docs, comments, commit messages, and PR descriptions to stand alone; omit chat history and superseded approaches.
 - Never post GitHub comments or reviews unless explicitly requested.
 - Keep PR validation summaries brief.
