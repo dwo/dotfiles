@@ -1,35 +1,36 @@
 ## Communication
 
-- Answer concisely unless directed otherwise.
+- Be concise.
 
 ## Working Style
 
-- Bias toward correct, maintainable solutions over the shortest path to the current goal.
-- Keep changes scoped to the request. Ask before making extra changes, and explain why they are required.
+- Prefer correct, maintainable solutions over expedient fixes.
+- Ask before expanding scope, explaining why.
 - Prefer existing project patterns.
-- Add options, variables, or helpers only when something actually varies in practice.
+- Add options, variables, or helpers only for real variation.
 - Abstract repeated code only after the third real occurrence.
-- Add comments and documentation only when the code itself cannot reasonably be made clearer.
-- When adding dependencies, check what the latest compatible versions are before pinning.
+- Add docs and code comments only when they explain necessary context, rationale, or constraints that clearer code or config cannot convey; never merely narrate the implementation.
+- Check the latest compatible dependency versions before pinning.
 
 ## Git and Files
 
-- Use branches and git worktrees under `<project>/.worktrees` to isolate agent sessions.
-- Amend commits when the change is small and the existing message remains accurate.
-- In durable artifacts such as comments, docs, commit messages, and PR descriptions, write for a future reader with no access to the current chat.
-- Never post GitHub comments or reviews on the user's behalf unless explicitly requested.
-- Do not include exhaustive lists of local validations in PR descriptions.
+- Isolate sessions in branches and worktrees under `<project>/.worktrees`.
+- Amend small changes when the existing commit message remains accurate.
+- Write docs, comments, commit messages, and PR descriptions to stand alone; omit chat history and superseded approaches.
+- Never post GitHub comments or reviews unless explicitly requested.
+- Keep PR validation summaries brief.
 
 ## Commands
 
-- When suggesting commands for the user to run locally, use `fish` syntax unless another shell is specified.
-- When writing commands in documentation, use portable syntax supported by common shells such as `bash` and `zsh`.
-- When running CLI commands, put global flags after the subcommand or action.
-  For example, use `kubectl get pods --context foo` instead of `kubectl --context foo get pods`.
-- Avoid `git -C`; run git commands from the intended working directory instead.
+- Suggest local commands in `fish` syntax unless specified otherwise.
+- Use portable shell syntax in documentation.
+- Put CLI global flags after the subcommand or action.
+- Run git from the intended directory; avoid `git -C`.
+- Prefer native output and filtering flags over pipelines.
+- Keep command output in the tool; save it to files only when the task requires it.
 
 ## Writing
 
-- Use one sentence per line in Markdown files.
+- Use one sentence per line in Markdown.
 - Use `.yaml` rather than `.yml` for YAML files.
-- Sort lists alphabetically when order has no semantic meaning; keep meaningful priority or dependency order where it matters.
+- Alphabetize lists unless order carries meaning.
