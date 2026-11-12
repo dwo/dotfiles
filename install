@@ -63,10 +63,23 @@ cp init.vim "$HOME"/.config/nvim/init.vim
 
 #   ...plugins
 mkdir -p ~/.vim/pack/plugins/start
+repo_root=$(cd "$(git rev-parse --git-common-dir)/.." && pwd)
+for plugin in "$HOME"/.vim/pack/plugins/start/*; do
+  [ -L "$plugin" ] || continue
+  name=$(basename "$plugin")
+  case "$(readlink "$plugin")" in
+    "$PWD/dotvim/vendor/$name"|"$repo_root/dotvim/vendor/$name"|"$repo_root"/.worktrees/*/dotvim/vendor/"$name")
+      if ! git config --file .gitmodules --get "submodule.dotvim/vendor/$name.path" >/dev/null; then
+        rm "$plugin"
+      fi
+      ;;
+  esac
+done
 #   symlink my vendored submodules into the vim packages system
 find dotvim/vendor -maxdepth 1 -mindepth 1 -type d | while read -r dir; do
   symlink="$(basename "$dir")"
-  if [ ! -e ~/.vim/pack/plugins/start/"$symlink" ]; then
+  git config --file .gitmodules --get "submodule.$dir.path" >/dev/null || continue
+  if [ ! -e ~/.vim/pack/plugins/start/"$symlink" ] && [ ! -L ~/.vim/pack/plugins/start/"$symlink" ]; then
     ln -s "$PWD/$dir" ~/.vim/pack/plugins/start/"$symlink"
   fi
 done
