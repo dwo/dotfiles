@@ -9,6 +9,7 @@
 - Prefer existing project patterns.
 - Add options, variables, or helpers only for real variation.
 - Abstract repeated code only after the third real occurrence.
+- Prefer to let tests run in CI unless running locally will help inform implementation.
 
 ## Git and Files
 
