@@ -12,7 +12,6 @@ tags
 .DS_Store
 
 # Node
-.bundle
 npm-debug.log
 
 # Python
@@ -24,11 +23,6 @@ npm-debug.log
 .venv
 __pycache__
 venv
-
-# Ruby
-.rbx
-.rvmrc
-vendor/bundle
 
 # Vim
 .*.swn

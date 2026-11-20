@@ -1,7 +1,5 @@
 export COLUMNS
 export HISTSIZE=100000
-export GOPATH="$HOME/src"
-set PATH $PATH $GOPATH/bin
 
 if test -e /opt/homebrew/bin/brew
   fish_add_path "/opt/homebrew/bin"
