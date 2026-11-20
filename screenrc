@@ -7,8 +7,7 @@ termcapinfo xterm* ti@:te@
 
 # Enable truecolor support
 truecolor on
-term "xterm-256color"
-attrcolor b ".I"
+term "screen-256color"
 defbce on
 
 shell -${SHELL}
