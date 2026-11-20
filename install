@@ -35,11 +35,9 @@ mkdir -p "$HOME"/.config/fish
 cp shrc "$HOME"/.config/fish/config.fish
 cp starship.toml "$HOME"/.config/starship.toml
 
-# Linux gnome-terminal padding
-if [ "$(uname)" == "Linux" ]; then
-  mkdir -p ~/.config/gtk-3.0
-  cp gtk.css ~/.config/gtk-3.0/gtk.css
-fi
+# Ghostty
+mkdir -p "$HOME"/.config/ghostty
+cp config.ghostty "$HOME"/.config/ghostty/config.ghostty
 
 # GNU Screen
 cp screenrc "$HOME"/.screenrc

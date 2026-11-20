@@ -1,6 +1,7 @@
 ansible
 curl
 fish
+ghostty
 git
 graphviz
 htop
@@ -9,5 +10,6 @@ neovim
 screen
 starship
 tree
+ttf-hack-nerd
 wget
 xclip
