@@ -16,6 +16,12 @@ if not set -q SSH_AUTH_SOCK; and test -S $ssh_agent_socket
   set -gx SSH_AUTH_SOCK $ssh_agent_socket
 end
 
+# Lets sudo prompt for a password without a terminal, e.g. from editors and
+# agents.
+if test -x ~/.local/bin/rofi-askpass
+  set -gx SUDO_ASKPASS ~/.local/bin/rofi-askpass
+end
+
 source ~/.aliases
 
 mise activate fish | source

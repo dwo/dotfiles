@@ -29,6 +29,17 @@ elif [ -e /etc/os-release ]; then
   ansible-playbook linux.yaml -K -e "user=$(whoami)"
 fi
 
+# Linux desktop
+if [ "${ID:-}" == arch ]; then
+  mkdir -p "$HOME"/.config/i3
+  cp i3config "$HOME"/.config/i3/config
+  mkdir -p "$HOME"/.config/i3status-rust
+  cp i3status-rust.toml "$HOME"/.config/i3status-rust/config.toml
+  cp xprofile "$HOME"/.xprofile
+  mkdir -p "$HOME"/.local/bin
+  cp rofi-askpass "$HOME"/.local/bin/rofi-askpass
+fi
+
 # Shell
 cp aliases "$HOME"/.aliases
 mkdir -p "$HOME"/.config/fish
