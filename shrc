@@ -5,12 +5,13 @@ set PATH $PATH $GOPATH/bin
 
 if test -e /opt/homebrew/bin/brew
   fish_add_path "/opt/homebrew/bin"
-  fish_add_path /opt/homebrew/opt/node@24/bin
 end
 
 fish_add_path ~/.local/bin
 
 source ~/.aliases
+
+mise activate fish | source
 
 starship init fish | source
 

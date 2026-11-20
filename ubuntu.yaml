@@ -19,25 +19,25 @@
       - curl
       - gnupg
 
-  - name: NodeSource keyring directory
+  - name: mise keyring directory
     ansible.builtin.file:
       path: /etc/apt/keyrings
       state: directory
       mode: "0755"
 
-  - name: NodeSource signing key
+  - name: mise signing key
     ansible.builtin.get_url:
-      url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
-      dest: /etc/apt/keyrings/nodesource.asc
+      url: https://mise.jdx.dev/gpg-key.pub
+      dest: /etc/apt/keyrings/mise-archive-keyring.asc
       mode: "0644"
-    register: nodesource_key
+    register: mise_key
 
-  - name: NodeSource repository
+  - name: mise repository
     ansible.builtin.apt_repository:
-      repo: "deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_22.x nodistro main"
-      filename: nodesource
+      repo: "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.asc] https://mise.jdx.dev/deb stable main"
+      filename: mise
       update_cache: no
-    register: nodesource_repo
+    register: mise_repo
 
   - name: Repositories
     ansible.builtin.apt_repository:
@@ -50,16 +50,14 @@
   - name: Packages
     ansible.builtin.apt:
       install_recommends: no
-      update_cache: "{{ nodesource_key.changed or nodesource_repo.changed or repositories.changed }}"
+      update_cache: "{{ mise_key.changed or mise_repo.changed or repositories.changed }}"
       name:
       - fish
       - graphviz
+      - mise
       - neovim
-      - nodejs
-      - pipx
       - python3-venv
       - screen
-      - shellcheck
       - xclip
 
   - name: Configure Shell
@@ -72,12 +70,3 @@
     ansible.builtin.shell:
       creates: /usr/local/bin/starship
       cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
-
-  - name: Install uv
-    become_user: "{{ user }}"
-    ansible.builtin.command:
-      creates: "/home/{{ user }}/.local/bin/uv"
-      cmd: pipx install uv
-    environment:
-      PIPX_BIN_DIR: "/home/{{ user }}/.local/bin"
-      PIPX_HOME: "/home/{{ user }}/.local/share/pipx"

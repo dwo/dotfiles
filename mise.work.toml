@@ -1,0 +1,4 @@
+[tools]
+terraform = "latest"
+tflint = "latest"
+tfsec = "latest"
