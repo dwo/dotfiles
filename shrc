@@ -9,6 +9,13 @@ end
 
 fish_add_path ~/.local/bin
 
+# Shared agent from systemd's ssh-agent.socket user unit, unless one is
+# already provided (macOS launchd, SSH agent forwarding).
+set -l ssh_agent_socket $XDG_RUNTIME_DIR/ssh-agent.socket
+if not set -q SSH_AUTH_SOCK; and test -S $ssh_agent_socket
+  set -gx SSH_AUTH_SOCK $ssh_agent_socket
+end
+
 source ~/.aliases
 
 mise activate fish | source

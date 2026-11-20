@@ -1,0 +1,11 @@
+- name: Packages
+  community.general.pacman:
+    name: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt').splitlines() }}"
+
+- name: SSH agent
+  become: no
+  ansible.builtin.systemd_service:
+    name: ssh-agent.socket
+    scope: user
+    enabled: yes
+    state: started

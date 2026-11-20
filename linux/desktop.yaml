@@ -1,0 +1,5 @@
+- name: Natural scrolling
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/30-natural-scrolling.conf"
+    dest: /etc/X11/xorg.conf.d/30-natural-scrolling.conf
+    mode: "0644"

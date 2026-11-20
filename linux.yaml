@@ -1,0 +1,28 @@
+- name: Linux
+  become: yes
+  hosts: localhost
+  connection: local
+  vars_prompt:
+  - name: "user"
+    prompt: "Enter the username to configure"
+    private: no
+
+  tasks:
+  - name: Distribution
+    ansible.builtin.include_tasks: "linux/{{ ansible_facts['distribution'] | lower }}.yaml"
+
+  - name: Default boot target
+    ansible.builtin.command: systemctl get-default
+    register: default_target
+    changed_when: false
+    check_mode: false
+
+  - name: Desktop
+    ansible.builtin.include_tasks: linux/desktop.yaml
+    when: default_target.stdout == "graphical.target"
+
+  - name: Configure Shell
+    ansible.builtin.user:
+      name: "{{ user }}"
+      shell: /usr/bin/fish
+      state: present

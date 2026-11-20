@@ -1,0 +1,13 @@
+ansible
+curl
+fish
+git
+graphviz
+htop
+mise
+neovim
+screen
+starship
+tree
+wget
+xclip

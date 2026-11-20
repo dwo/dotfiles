@@ -10,18 +10,23 @@ if [ "$(uname)" == "Darwin" ]; then
     exit 1
   fi
   brew bundle --quiet
-elif [ -e /etc/lsb-release ]; then
+elif [ -e /etc/os-release ]; then
   # shellcheck disable=SC1091
-  . /etc/lsb-release
-  if [ "$DISTRIB_ID" == "Ubuntu" ]; then
-    if [ ! -e /usr/bin/ansible-playbook ]; then
-      sudo apt update
-      sudo apt install software-properties-common --yes
-      sudo add-apt-repository --yes --update ppa:ansible/ansible
-      sudo apt install ansible-core --yes
-    fi
-    ansible-playbook ubuntu.yaml -K -e "user=$(whoami)"
+  . /etc/os-release
+  if [ ! -e /usr/bin/ansible-playbook ]; then
+    case "$ID" in
+      arch)
+        sudo pacman -S --needed --noconfirm ansible
+        ;;
+      ubuntu)
+        sudo apt update
+        sudo apt install software-properties-common --yes
+        sudo add-apt-repository --yes --update ppa:ansible/ansible
+        sudo apt install ansible-core --yes
+        ;;
+    esac
   fi
+  ansible-playbook linux.yaml -K -e "user=$(whoami)"
 fi
 
 # Shell
