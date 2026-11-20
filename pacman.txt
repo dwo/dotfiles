@@ -8,6 +8,7 @@ git
 graphviz
 htop
 i3status-rust
+make
 mise
 neovim
 picom
