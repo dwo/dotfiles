@@ -1,21 +1,28 @@
 export COLUMNS
 export HISTSIZE=100000
-export GOPATH="$HOME/src"
-set PATH $PATH $GOPATH/bin
-
-if test -e /usr/local/bin/brew
-  fish_add_path "/usr/local/sbin"
-  fish_add_path /usr/local/opt/node@24/bin
-end
 
 if test -e /opt/homebrew/bin/brew
   fish_add_path "/opt/homebrew/bin"
-  fish_add_path /opt/homebrew/opt/node@24/bin
 end
 
-fish_add_path "~/.local/bin"
+fish_add_path ~/.local/bin
+
+# Shared agent from systemd's ssh-agent.socket user unit, unless one is
+# already provided (macOS launchd, SSH agent forwarding).
+set -l ssh_agent_socket $XDG_RUNTIME_DIR/ssh-agent.socket
+if not set -q SSH_AUTH_SOCK; and test -S $ssh_agent_socket
+  set -gx SSH_AUTH_SOCK $ssh_agent_socket
+end
+
+# Lets sudo prompt for a password without a terminal, e.g. from editors and
+# agents.
+if test -x ~/.local/bin/rofi-askpass
+  set -gx SUDO_ASKPASS ~/.local/bin/rofi-askpass
+end
 
 source ~/.aliases
+
+mise activate fish | source
 
 starship init fish | source
 

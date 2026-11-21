@@ -27,7 +27,6 @@ set smartcase              "   unless search has a capital letter
 set incsearch              " search incrementally
 set nohlsearch             " don't highlight search results
 set wildmode=longest,list  " tab completion for filenames
-set suffixesadd=.rb        " suffixes for gf file search
 
 " Filesystem
 set nobackup               " Don't keep backup files
@@ -65,11 +64,6 @@ augroup TrailingWhitespace
   autocmd BufWritePre *.cpp,*.scss,*.css,*.go,*.xml :call <SID>StripTrailingWhitespaces()
 augroup END
 
-augroup Bazel
-  autocmd!
-  autocmd FileType bzl setlocal tabstop=4 softtabstop=4 shiftwidth=4
-augroup END
-
 augroup Git
   autocmd!
   autocmd FileType gitcommit setlocal textwidth=120
@@ -84,6 +78,3 @@ augroup Make
   autocmd!
   autocmd FileType make setlocal tabstop=2 softtabstop=2 noexpandtab
 augroup END
-
-" Javascript Prettier formatting
-let g:prettier#autoformat_config_present=1

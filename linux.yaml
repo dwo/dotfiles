@@ -1,0 +1,34 @@
+- name: Linux
+  become: yes
+  hosts: localhost
+  connection: local
+  gather_subset: [min]
+  vars:
+    # Machine-specific additions that stay out of this repository; see README.
+    local_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/dotfiles"
+  vars_prompt:
+  - name: "user"
+    prompt: "Enter the username to configure"
+    private: no
+
+  tasks:
+  # Enabling any display manager creates this alias, which makes it a more
+  # reliable desktop signal than the default target (graphical on Arch even
+  # when headless). install uses the same check.
+  - name: Display manager
+    ansible.builtin.stat:
+      path: /etc/systemd/system/display-manager.service
+    register: display_manager
+
+  - name: Distribution
+    ansible.builtin.include_tasks: "linux/{{ ansible_facts['distribution'] | lower }}.yaml"
+
+  - name: Desktop
+    ansible.builtin.include_tasks: linux/desktop.yaml
+    when: display_manager.stat.exists
+
+  - name: Configure Shell
+    ansible.builtin.user:
+      name: "{{ user }}"
+      shell: /usr/bin/fish
+      state: present

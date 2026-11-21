@@ -3,13 +3,41 @@
 # Submodules
 git submodule init && git submodule update
 
-# Homebrew
+# System packages
 if [ "$(uname)" == "Darwin" ]; then
   if ! [ -x "$(command -v brew)" ]; then
     echo "Please install homebrew."
     exit 1
   fi
   brew bundle --quiet
+elif [ -e /etc/os-release ]; then
+  # shellcheck disable=SC1091
+  . /etc/os-release
+  if [ ! -e /usr/bin/ansible-playbook ]; then
+    case "$ID" in
+      arch)
+        sudo pacman -S --needed --noconfirm ansible
+        ;;
+      ubuntu)
+        sudo apt update
+        sudo apt install software-properties-common --yes
+        sudo add-apt-repository --yes --update ppa:ansible/ansible
+        sudo apt install ansible-core --yes
+        ;;
+    esac
+  fi
+  ansible-playbook linux.yaml -K -e "user=$(whoami)"
+fi
+
+# Linux desktop, detected the same way as in linux.yaml
+if [ -e /etc/systemd/system/display-manager.service ]; then
+  mkdir -p "$HOME"/.config/i3
+  cp i3config "$HOME"/.config/i3/config
+  mkdir -p "$HOME"/.config/i3status-rust
+  cp i3status-rust.toml "$HOME"/.config/i3status-rust/config.toml
+  cp xprofile "$HOME"/.xprofile
+  mkdir -p "$HOME"/.local/bin
+  cp rofi-askpass "$HOME"/.local/bin/rofi-askpass
 fi
 
 # Shell
@@ -18,11 +46,9 @@ mkdir -p "$HOME"/.config/fish
 cp shrc "$HOME"/.config/fish/config.fish
 cp starship.toml "$HOME"/.config/starship.toml
 
-# Linux gnome-terminal padding
-if [ "$(uname)" == "Linux" ]; then
-  mkdir -p ~/.config/gtk-3.0
-  cp gtk.css ~/.config/gtk-3.0/gtk.css
-fi
+# Ghostty
+mkdir -p "$HOME"/.config/ghostty
+cp config.ghostty "$HOME"/.config/ghostty/config.ghostty
 
 # GNU Screen
 cp screenrc "$HOME"/.screenrc
@@ -44,8 +70,17 @@ cp gitconfig.template "$HOME"/.gitconfig
 git config --file "$HOME"/.gitconfig user.email "$GIT_EMAIL"
 git config --file "$HOME"/.gitconfig user.signingkey "$GIT_SIGNINGKEY"
 
-# Terraform
-cp terraformrc "$HOME/.terraformrc"
+# Development tools
+mkdir -p "$HOME"/.config/mise
+cp mise.toml "$HOME"/.config/mise/config.toml
+work_env='set -gx MISE_ENV work'
+if [ "${MISE_ENV:-}" == work ] || grep -qxF "$work_env" "$HOME"/.sh_local 2>/dev/null; then
+  grep -qxF "$work_env" "$HOME"/.sh_local 2>/dev/null || echo "$work_env" >> "$HOME"/.sh_local
+  export MISE_ENV=work
+  cp mise.work.toml "$HOME"/.config/mise/config.work.toml
+  cp terraformrc "$HOME/.terraformrc"
+fi
+mise install --quiet --yes
 
 # Agent instructions
 mkdir -p "$HOME"/.config
@@ -88,20 +123,5 @@ mkdir -p ~/.vim/ftplugin
 find dotvim/ftplugin -maxdepth 1 -mindepth 1 -type f | while read -r ftplugin; do
   cp "$ftplugin" ~/.vim/ftplugin/.
 done
-
-# Ubuntu configuration
-if [ -e /etc/lsb-release ]; then
-  # shellcheck disable=SC1091
-  . /etc/lsb-release
-  if [ "$DISTRIB_ID" == "Ubuntu" ]; then
-    if [ ! -e /usr/bin/ansible-playbook ]; then
-      sudo apt update
-      sudo apt install software-properties-common --yes
-      sudo add-apt-repository --yes --update ppa:ansible/ansible
-      sudo apt install ansible-core --yes
-    fi
-    ansible-playbook ubuntu.yaml -K -e "user=$(whoami)"
-  fi
-fi
 
 echo "Your dotfiles have been copied to $HOME"

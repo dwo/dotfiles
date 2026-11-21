@@ -1,0 +1,14 @@
+# Share sudo authentication across terminals and terminal-less callers
+# (editors, agents using SUDO_ASKPASS), which otherwise each prompt again.
+- name: Sudo authentication shared across sessions
+  ansible.builtin.copy:
+    content: "Defaults:{{ user }} timestamp_type=global\n"
+    dest: /etc/sudoers.d/10-timestamp-global
+    mode: "0440"
+    validate: visudo -cf %s
+
+- name: Natural scrolling
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/30-natural-scrolling.conf"
+    dest: /etc/X11/xorg.conf.d/30-natural-scrolling.conf
+    mode: "0644"

@@ -1,0 +1,10 @@
+[tools]
+gh = "latest"
+hadolint = "latest"
+jq = "latest"
+node = "24"
+ruff = "latest"
+shellcheck = "latest"
+uv = "latest"
+yamlfmt = "latest"
+yq = "latest"

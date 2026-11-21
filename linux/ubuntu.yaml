@@ -1,0 +1,52 @@
+- name: Repository prerequisites
+  ansible.builtin.apt:
+    install_recommends: no
+    update_cache: yes
+    name:
+    - ca-certificates
+    - curl
+    - gnupg
+
+- name: mise keyring directory
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: "0755"
+
+- name: mise signing key
+  ansible.builtin.get_url:
+    url: https://mise.jdx.dev/gpg-key.pub
+    dest: /etc/apt/keyrings/mise-archive-keyring.asc
+    mode: "0644"
+  register: mise_key
+
+- name: mise repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.asc] https://mise.jdx.dev/deb stable main"
+    filename: mise
+    update_cache: no
+  register: mise_repo
+
+- name: Neovim repository
+  ansible.builtin.apt_repository:
+    repo: ppa:neovim-ppa/unstable
+    update_cache: no
+  register: neovim_repo
+
+- name: Packages
+  ansible.builtin.apt:
+    install_recommends: no
+    update_cache: "{{ mise_key.changed or mise_repo.changed or neovim_repo.changed }}"
+    name:
+    - fish
+    - graphviz
+    - mise
+    - neovim
+    - python3-venv
+    - screen
+    - xclip
+
+- name: Install starship
+  ansible.builtin.shell:
+    creates: /usr/local/bin/starship
+    cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
