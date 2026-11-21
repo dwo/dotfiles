@@ -2,6 +2,7 @@
   become: yes
   hosts: localhost
   connection: local
+  gather_subset: [min]
   vars:
     # Machine-specific additions that stay out of this repository; see README.
     local_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/dotfiles"

@@ -27,18 +27,16 @@
     update_cache: no
   register: mise_repo
 
-- name: Repositories
+- name: Neovim repository
   ansible.builtin.apt_repository:
-    repo: "{{ item }}"
+    repo: ppa:neovim-ppa/unstable
     update_cache: no
-  register: repositories
-  with_items:
-  - ppa:neovim-ppa/unstable
+  register: neovim_repo
 
 - name: Packages
   ansible.builtin.apt:
     install_recommends: no
-    update_cache: "{{ mise_key.changed or mise_repo.changed or repositories.changed }}"
+    update_cache: "{{ mise_key.changed or mise_repo.changed or neovim_repo.changed }}"
     name:
     - fish
     - graphviz

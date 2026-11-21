@@ -1,7 +1,7 @@
 .PHONY: test
 
 shellcheck.out: install rofi-askpass
-	shellcheck install rofi-askpass > shellcheck.out
+	shellcheck $^ > $@
 
 test: shellcheck.out
 	@echo "Done."
