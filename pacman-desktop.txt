@@ -2,6 +2,7 @@ blueman
 discord
 dunst
 feh
+feishin
 ghostty
 gnome-keyring
 i3status-rust
