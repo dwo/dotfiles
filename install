@@ -41,6 +41,7 @@ if [ -e /etc/systemd/system/display-manager.service ]; then
   cp qt6ct.conf "$HOME"/.config/qt6ct/qt6ct.conf
   cp xprofile "$HOME"/.xprofile
   mkdir -p "$HOME"/.local/bin
+  cp lock-screen "$HOME"/.local/bin/lock-screen
   cp rofi-askpass "$HOME"/.local/bin/rofi-askpass
 fi
 

@@ -93,7 +93,8 @@
 - name: AUR
   when: aur_packages | length > 0
   vars:
-    aur_packages: "{{ (lookup('ansible.builtin.file', local_dir + '/aur.txt', errors='ignore') or '').splitlines() }}"
+    aur_packages: "{{ desktop_aur_packages + (lookup('ansible.builtin.file', local_dir + '/aur.txt', errors='ignore') or '').splitlines() }}"
+    desktop_aur_packages: "{{ lookup('ansible.builtin.file', playbook_dir + '/aur-desktop.txt').splitlines() if display_manager.stat.exists else [] }}"
   block:
   - name: AUR build tools
     community.general.pacman:
@@ -112,6 +113,14 @@
         makepkg -si --noconfirm
         rm -rf "$dir"
       creates: /usr/bin/yay
+
+  # i3lock-color replaces i3lock, and yay cannot resolve the conflict
+  # unattended.
+  - name: i3lock replaced by i3lock-color
+    community.general.pacman:
+      name: i3lock
+      state: absent
+    when: "'i3lock-color' in aur_packages"
 
   - name: AUR packages
     become: no

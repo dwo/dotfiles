@@ -1,0 +1,21 @@
+#!/bin/sh
+# Catppuccin Mocha lock screen. Without --indicator, i3lock shows nothing until
+# a key is pressed.
+exec i3lock \
+  --blur 8 \
+  --indicator --clock --radius 110 --ring-width 8 \
+  --time-str '%H:%M' --time-pos 'ix:iy-190' --time-size 72 \
+  --date-str '%A %d %B' --date-pos 'tx:ty+40' --date-size 22 \
+  --greeter-text 'Enter password' --greeter-pos 'ix:iy+190' --greeter-size 20 \
+  --verif-text 'Checking…' --wrong-text 'Wrong password' --noinput-text 'No input' \
+  --verif-size 16 --wrong-size 16 \
+  --time-font 'Noto Sans' --date-font 'Noto Sans' --greeter-font 'Noto Sans' \
+  --verif-font 'Noto Sans' --wrong-font 'Noto Sans' \
+  --inside-color 1e1e2ecc --ring-color b4befeff \
+  --insidever-color 1e1e2ecc --ringver-color 89b4faff \
+  --insidewrong-color 1e1e2ecc --ringwrong-color f38ba8ff \
+  --line-color 00000000 --separator-color 00000000 \
+  --keyhl-color a6e3a1ff --bshl-color fab387ff \
+  --time-color cdd6f4ff --date-color cdd6f4ff --greeter-color cdd6f4ff \
+  --verif-color cdd6f4ff --wrong-color f38ba8ff \
+  "$@"
