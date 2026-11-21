@@ -180,6 +180,14 @@
       regexp: '^#?console-mode\b'
       line: console-mode max
 
+  # Boot goes straight to the splash; holding Space at power-on shows the menu
+  # for the fallback kernel or firmware setup.
+  - name: Boot menu hidden
+    ansible.builtin.lineinfile:
+      path: /boot/loader/loader.conf
+      regexp: '^#?timeout\b'
+      line: timeout 0
+
 # SDDM with catppuccin-sddm-theme-mocha from the AUR. It takes over from
 # whichever display manager the installer set up at the next boot; switching
 # now would end the running session.
