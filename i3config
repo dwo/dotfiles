@@ -2,6 +2,35 @@ set $mod Mod4
 
 font pango:Hack Nerd Font 11
 
+# Apps draw their own headers, so tiled windows only get a border. Tabbed and
+# stacked layouts still show titles, as do floating windows, which are often
+# dialogs without a header of their own.
+default_border pixel 1
+default_floating_border normal 1
+# Apps that draw their own frame, like Ghostty and Discord, ask for no border,
+# which would hide which tiled window has focus.
+for_window [tiling] border pixel 1
+
+# Catppuccin Mocha, matching the bar theme
+set $base      #1e1e2e
+set $crust     #11111b
+set $lavender  #b4befe
+set $overlay0  #6c7086
+set $peach     #fab387
+set $red       #f38ba8
+set $rosewater #f5e0dc
+set $surface0  #313244
+set $surface1  #45475a
+set $text      #cdd6f4
+
+# class                 border    background text   indicator  child_border
+client.focused          $lavender $base      $text  $rosewater $lavender
+client.focused_inactive $overlay0 $base      $text  $rosewater $overlay0
+client.unfocused        $overlay0 $base      $text  $rosewater $overlay0
+client.urgent           $peach    $base      $peach $overlay0  $peach
+client.placeholder      $overlay0 $base      $text  $overlay0  $overlay0
+client.background       $base
+
 exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -124,4 +153,17 @@ bindsym $mod+r mode "resize"
 bar {
         position top
         status_command i3status-rs
+
+        colors {
+                background $surface0
+                separator  $overlay0
+                statusline $text
+
+                # class            border    background text
+                active_workspace   $surface1 $surface1  $text
+                binding_mode       $red      $red       $crust
+                focused_workspace  $lavender $lavender  $crust
+                inactive_workspace $surface0 $surface0  $text
+                urgent_workspace   $peach    $peach     $crust
+        }
 }
