@@ -69,3 +69,17 @@
   ansible.builtin.command:
     cmd: xdg-user-dirs-update
     creates: ~/.config/user-dirs.dirs
+
+# A system drop-in, because dunst only reads drop-ins next to the dunstrc it
+# uses, and the packaged one lives in /etc.
+- name: Notification drop-in directory
+  ansible.builtin.file:
+    path: /etc/dunst/dunstrc.d
+    state: directory
+    mode: "0755"
+
+- name: Notifications held back in fullscreen
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/dunst-fullscreen.conf"
+    dest: /etc/dunst/dunstrc.d/fullscreen.conf
+    mode: "0644"
