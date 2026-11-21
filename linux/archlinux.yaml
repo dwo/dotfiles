@@ -163,6 +163,47 @@
     ansible.builtin.command: mkinitcpio -P
     when: plymouth_theme.changed or plymouth_hook.changed or plymouth_cmdline.changed or plymouth_presets.changed
 
+# SDDM with catppuccin-sddm-theme-mocha from the AUR. It takes over from
+# whichever display manager the installer set up at the next boot; switching
+# now would end the running session.
+- name: Login screen
+  when: "'sddm' in ansible_facts.packages"
+  block:
+  - name: Login screen settings directory
+    ansible.builtin.file:
+      path: /etc/sddm.conf.d
+      state: directory
+      mode: "0755"
+
+  - name: Login screen theme
+    ansible.builtin.copy:
+      content: |
+        [Theme]
+        Current=catppuccin-mocha-lavender
+      dest: /etc/sddm.conf.d/theme.conf
+      mode: "0644"
+
+  # SDDM reads overrides from this file beside the packaged theme.conf; without
+  # the background image the theme shows its plain base colour.
+  - name: Login screen without background image
+    ansible.builtin.copy:
+      content: |
+        [General]
+        CustomBackground="false"
+      dest: /usr/share/sddm/themes/catppuccin-mocha-lavender/theme.conf.user
+      mode: "0644"
+
+  - name: Previous display manager
+    ansible.builtin.systemd_service:
+      name: lightdm
+      enabled: no
+    when: "'lightdm' in ansible_facts.packages"
+
+  - name: SDDM as the display manager
+    ansible.builtin.systemd_service:
+      name: sddm
+      enabled: yes
+
 # The default picks the most recently synced mirrors worldwide, regardless
 # of distance; rank recent ones by download speed from this machine instead.
 - name: Mirror selection
