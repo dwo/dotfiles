@@ -1,0 +1,10 @@
+dunst
+feh
+ghostty
+i3status-rust
+picom
+rofi
+ttf-hack-nerd
+variety
+xclip
+xorg-xrandr

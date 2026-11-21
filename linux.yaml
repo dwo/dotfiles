@@ -12,18 +12,20 @@
     private: no
 
   tasks:
+  # Enabling any display manager creates this alias, which makes it a more
+  # reliable desktop signal than the default target (graphical on Arch even
+  # when headless). install uses the same check.
+  - name: Display manager
+    ansible.builtin.stat:
+      path: /etc/systemd/system/display-manager.service
+    register: display_manager
+
   - name: Distribution
     ansible.builtin.include_tasks: "linux/{{ ansible_facts['distribution'] | lower }}.yaml"
 
-  - name: Default boot target
-    ansible.builtin.command: systemctl get-default
-    register: default_target
-    changed_when: false
-    check_mode: false
-
   - name: Desktop
     ansible.builtin.include_tasks: linux/desktop.yaml
-    when: default_target.stdout == "graphical.target"
+    when: display_manager.stat.exists
 
   - name: Configure Shell
     ansible.builtin.user:

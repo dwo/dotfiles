@@ -29,8 +29,8 @@ elif [ -e /etc/os-release ]; then
   ansible-playbook linux.yaml -K -e "user=$(whoami)"
 fi
 
-# Linux desktop
-if [ "${ID:-}" == arch ]; then
+# Linux desktop, detected the same way as in linux.yaml
+if [ -e /etc/systemd/system/display-manager.service ]; then
   mkdir -p "$HOME"/.config/i3
   cp i3config "$HOME"/.config/i3/config
   mkdir -p "$HOME"/.config/i3status-rust

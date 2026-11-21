@@ -7,9 +7,10 @@
 
 - name: Packages
   community.general.pacman:
-    name: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt').splitlines() + local_pacman_packages }}"
+    name: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt').splitlines() + desktop_packages + local_pacman_packages }}"
     update_cache: "{{ multilib.changed }}"
   vars:
+    desktop_packages: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman-desktop.txt').splitlines() if display_manager.stat.exists else [] }}"
     local_pacman_packages: "{{ (lookup('ansible.builtin.file', local_dir + '/pacman.txt', errors='ignore') or '').splitlines() }}"
 
 - name: AUR
