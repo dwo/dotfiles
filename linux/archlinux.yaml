@@ -59,6 +59,14 @@
     name: nvidia-open-lts
   when: "'nvidia-open' in ansible_facts.packages"
 
+# GameMode only applies CPU governor and GPU tweaks for members of this group.
+- name: GameMode group
+  ansible.builtin.user:
+    name: "{{ user }}"
+    groups: gamemode
+    append: yes
+  when: "'gamemode' in ansible_facts.packages"
+
 - name: AUR
   when: aur_packages | length > 0
   vars:

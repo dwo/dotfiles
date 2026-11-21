@@ -48,6 +48,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+# Screenshots go to Pictures and the clipboard. Selection also accepts a click
+# on a window.
+bindsym Print exec --no-startup-id maim | tee "$(xdg-user-dir PICTURES)/$(date +%F-%H%M%S).png" | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim --select | tee "$(xdg-user-dir PICTURES)/$(date +%F-%H%M%S).png" | xclip -selection clipboard -t image/png
+
 floating_modifier $mod
 
 tiling_drag modifier titlebar

@@ -61,3 +61,11 @@
 - name: Compile dconf defaults
   ansible.builtin.command: dconf update
   when: dconf_defaults.changed
+
+# The packaged user service waits for a graphical session target that i3 never
+# starts. The folders only need creating once.
+- name: Standard home folders
+  become: no
+  ansible.builtin.command:
+    cmd: xdg-user-dirs-update
+    creates: ~/.config/user-dirs.dirs

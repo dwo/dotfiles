@@ -1,3 +1,4 @@
+export QT_QPA_PLATFORMTHEME=qt6ct
 export TERMINAL=ghostty
 
 # i3bar only shows the tray on the primary output, and X marks none by default.
