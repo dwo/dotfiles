@@ -29,3 +29,35 @@
   - nvidia-resume.service
   - nvidia-suspend.service
   when: nvidia_suspend.stat.exists
+
+# GTK apps, and Firefox through the desktop portal, pick dark styles from this
+# setting. A system default applies without the user's D-Bus session, which
+# Ansible may not have.
+- name: Dark mode directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+  - /etc/dconf/db/local.d
+  - /etc/dconf/profile
+
+- name: Dark mode
+  ansible.builtin.copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.dest }}"
+    mode: "0644"
+  loop:
+  - dest: /etc/dconf/db/local.d/00-dark-mode
+    content: |
+      [org/gnome/desktop/interface]
+      color-scheme='prefer-dark'
+  - dest: /etc/dconf/profile/user
+    content: |
+      user-db:user
+      system-db:local
+  register: dconf_defaults
+
+- name: Compile dconf defaults
+  ansible.builtin.command: dconf update
+  when: dconf_defaults.changed
