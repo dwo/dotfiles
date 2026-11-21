@@ -11,6 +11,20 @@ warning_cpu = 50
 critical_cpu = 90
 
 [[block]]
+block = "temperature"
+format = " $icon $max "
+inputs = ["Tctl", "Package id 0"]
+
+# The nvidia_gpu block reads 0° from drivers that report decimal
+# temperatures, so query nvidia-smi directly.
+[[block]]
+block = "custom"
+if_command = "command -v nvidia-smi"
+command = "printf '%.0f' \"$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits)\""
+interval = 5
+format = " ^icon_gpu $text° "
+
+[[block]]
 block = "memory"
 format = " $icon $mem_total_used_percents.eng(w:2) "
 
