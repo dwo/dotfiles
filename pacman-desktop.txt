@@ -3,6 +3,7 @@ feh
 ghostty
 i3status-rust
 picom
+polkit-gnome
 rofi
 ttf-hack-nerd
 variety
