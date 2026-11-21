@@ -53,6 +53,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym Print exec --no-startup-id maim | tee "$(xdg-user-dir PICTURES)/$(date +%F-%H%M%S).png" | xclip -selection clipboard -t image/png
 bindsym Shift+Print exec --no-startup-id maim --select | tee "$(xdg-user-dir PICTURES)/$(date +%F-%H%M%S).png" | xclip -selection clipboard -t image/png
 
+bindsym $mod+F12 exec --no-startup-id openrgb --noautoconnect --mode rainbow
+bindsym $mod+Shift+F12 exec --no-startup-id openrgb --noautoconnect --mode off
+
 floating_modifier $mod
 
 tiling_drag modifier titlebar

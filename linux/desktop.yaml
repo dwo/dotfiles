@@ -113,3 +113,35 @@
     name: bluetooth
     state: restarted
   when: bluetooth_le.changed
+
+- name: OpenRGB
+  ansible.builtin.stat:
+    path: /usr/bin/openrgb
+  register: openrgb
+
+# RGB lighting comes back on at every boot. Waiting for the display manager
+# ensures the GPU driver, which exposes the card's lighting controller, is up.
+- name: RGB lighting off at boot
+  when: openrgb.stat.exists
+  block:
+  - name: RGB lighting off service
+    ansible.builtin.copy:
+      content: |
+        [Unit]
+        Description=Turn off RGB lighting
+        After=display-manager.service
+
+        [Service]
+        Type=oneshot
+        ExecStart=/usr/bin/openrgb --noautoconnect --mode off
+
+        [Install]
+        WantedBy=graphical.target
+      dest: /etc/systemd/system/rgb-off.service
+      mode: "0644"
+
+  - name: Enable RGB lighting off service
+    ansible.builtin.systemd_service:
+      name: rgb-off.service
+      enabled: yes
+      daemon_reload: yes
