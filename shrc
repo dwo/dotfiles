@@ -7,11 +7,15 @@ end
 
 fish_add_path ~/.local/bin
 
-# Shared agent from systemd's ssh-agent.socket user unit, unless one is
-# already provided (macOS launchd, SSH agent forwarding).
-set -l ssh_agent_socket $XDG_RUNTIME_DIR/ssh-agent.socket
-if not set -q SSH_AUTH_SOCK; and test -S $ssh_agent_socket
-  set -gx SSH_AUTH_SOCK $ssh_agent_socket
+# Shared agent from a systemd user unit, unless one is already provided (macOS
+# launchd, SSH agent forwarding): gcr's on desktops, OpenSSH's otherwise.
+if not set -q SSH_AUTH_SOCK
+  for ssh_agent_socket in $XDG_RUNTIME_DIR/gcr/ssh $XDG_RUNTIME_DIR/ssh-agent.socket
+    if test -S $ssh_agent_socket
+      set -gx SSH_AUTH_SOCK $ssh_agent_socket
+      break
+    end
+  end
 end
 
 # Lets sudo prompt for a password without a terminal, e.g. from editors and

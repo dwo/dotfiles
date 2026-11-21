@@ -252,10 +252,17 @@
   - paccache.timer
   - reflector.timer
 
+# On desktops the gcr agent can unlock keys from the login keyring, so the
+# passphrase isn't needed again after each login. Only one agent should run.
 - name: SSH agent
   become: no
   ansible.builtin.systemd_service:
-    name: ssh-agent.socket
+    name: "{{ item.name }}"
     scope: user
-    enabled: yes
-    state: started
+    enabled: "{{ item.enabled }}"
+    state: "{{ 'started' if item.enabled else 'stopped' }}"
+  loop:
+  - name: ssh-agent.socket
+    enabled: "{{ not display_manager.stat.exists }}"
+  - name: gcr-ssh-agent.socket
+    enabled: "{{ display_manager.stat.exists }}"
