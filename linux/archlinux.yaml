@@ -120,6 +120,49 @@
     register: aur
     changed_when: "'there is nothing to do' not in aur.stdout"
 
+# An animated boot splash, from plymouth-theme-abstract-ring-git in the AUR,
+# that also draws the disk encryption password prompt.
+- name: Boot splash
+  when: "'plymouth' in ansible_facts.packages"
+  block:
+  - name: Boot splash theme
+    community.general.ini_file:
+      path: /etc/plymouth/plymouthd.conf
+      section: Daemon
+      option: Theme
+      value: abstract_ring
+      no_extra_spaces: yes
+    register: plymouth_theme
+
+  # It must come before encrypt to take over the password prompt.
+  - name: Boot splash in the initramfs
+    ansible.builtin.replace:
+      path: /etc/mkinitcpio.conf
+      regexp: '^(HOOKS=\((?!.*\bplymouth\b).*?)\b(sd-encrypt|encrypt|filesystems)\b'
+      replace: '\1plymouth \2'
+    register: plymouth_hook
+
+  - name: Boot splash kernel parameters
+    ansible.builtin.replace:
+      path: /etc/kernel/cmdline
+      regexp: '^(?!.*\b{{ item }}\b)(.+?)[ \t]*$'
+      replace: '\1 {{ item }}'
+    loop: [quiet, splash]
+    register: plymouth_cmdline
+
+  # Otherwise the boot loader shows a static logo before the animation starts.
+  - name: No static splash in boot images
+    ansible.builtin.replace:
+      path: "/etc/mkinitcpio.d/{{ item }}.preset"
+      regexp: ' ?--splash [^\s"]+'
+      replace: ''
+    loop: [linux, linux-lts]
+    register: plymouth_presets
+
+  - name: Rebuild boot images for the splash
+    ansible.builtin.command: mkinitcpio -P
+    when: plymouth_theme.changed or plymouth_hook.changed or plymouth_cmdline.changed or plymouth_presets.changed
+
 # The default picks the most recently synced mirrors worldwide, regardless
 # of distance; rank recent ones by download speed from this machine instead.
 - name: Mirror selection
