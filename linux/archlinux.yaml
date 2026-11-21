@@ -1,3 +1,26 @@
+# Arch leaves systemd-resolved off, so without it every lookup reaches the
+# network's DNS server uncached. NetworkManager hands the resolver its DNS
+# servers once resolv.conf points at the stub.
+- name: Local DNS cache
+  ansible.builtin.systemd_service:
+    name: systemd-resolved
+    enabled: yes
+    state: started
+
+- name: Resolve through the local DNS cache
+  ansible.builtin.file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+    force: yes
+  register: resolv_conf
+
+- name: Restart NetworkManager for the DNS cache
+  ansible.builtin.systemd_service:
+    name: NetworkManager
+    state: restarted
+  when: resolv_conf.changed
+
 - name: multilib repository
   ansible.builtin.replace:
     path: /etc/pacman.conf
