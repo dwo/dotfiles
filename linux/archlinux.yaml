@@ -163,6 +163,14 @@
     ansible.builtin.command: mkinitcpio -P
     when: plymouth_theme.changed or plymouth_hook.changed or plymouth_cmdline.changed or plymouth_presets.changed
 
+  # The splash draws on the firmware framebuffer before GPU drivers load, which
+  # firmware often leaves at a low resolution that then gets stretched.
+  - name: Boot splash at native resolution
+    ansible.builtin.lineinfile:
+      path: /boot/loader/loader.conf
+      regexp: '^#?console-mode\b'
+      line: console-mode max
+
 # SDDM with catppuccin-sddm-theme-mocha from the AUR. It takes over from
 # whichever display manager the installer set up at the next boot; switching
 # now would end the running session.
