@@ -7,6 +7,29 @@
     enabled: yes
     state: started
 
+- name: DNS cache settings directory
+  ansible.builtin.file:
+    path: /etc/systemd/resolved.conf.d
+    state: directory
+    mode: "0755"
+
+# systemd-resolved keeps bare hostnames like "raspberrypi" off the network's DNS
+# server by default, unlike other resolvers, so home network names fail.
+- name: Resolve bare hostnames through DNS
+  ansible.builtin.copy:
+    content: |
+      [Resolve]
+      ResolveUnicastSingleLabel=yes
+    dest: /etc/systemd/resolved.conf.d/single-label.conf
+    mode: "0644"
+  register: resolved_single_label
+
+- name: Restart the DNS cache for bare hostnames
+  ansible.builtin.systemd_service:
+    name: systemd-resolved
+    state: restarted
+  when: resolved_single_label.changed
+
 - name: Resolve through the local DNS cache
   ansible.builtin.file:
     src: /run/systemd/resolve/stub-resolv.conf
