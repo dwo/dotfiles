@@ -5,6 +5,7 @@ fwupd
 git
 graphviz
 htop
+linux-lts
 make
 mise
 neovim

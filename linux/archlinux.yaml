@@ -28,6 +28,20 @@
     replace: "[multilib]\nInclude = /etc/pacman.d/mirrorlist"
   register: multilib
 
+- name: Stock kernel boot image settings
+  ansible.builtin.slurp:
+    src: /etc/mkinitcpio.d/linux.preset
+  register: linux_preset
+
+# linux-lts is a fallback boot option.
+- name: LTS kernel boot image settings
+  ansible.builtin.copy:
+    content: >-
+      {{ linux_preset.content | b64decode
+         | regex_replace("(?<=[-'])linux(?=[-.'\"])", 'linux-lts') }}
+    dest: /etc/mkinitcpio.d/linux-lts.preset
+    mode: "0644"
+
 - name: Packages
   community.general.pacman:
     name: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt').splitlines() + desktop_packages + local_pacman_packages }}"
@@ -35,6 +49,15 @@
   vars:
     desktop_packages: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman-desktop.txt').splitlines() if display_manager.stat.exists else [] }}"
     local_pacman_packages: "{{ (lookup('ansible.builtin.file', local_dir + '/pacman.txt', errors='ignore') or '').splitlines() }}"
+
+- name: Installed packages
+  ansible.builtin.package_facts:
+
+# nvidia-open only provides modules for the stock kernel.
+- name: NVIDIA modules for the LTS kernel
+  community.general.pacman:
+    name: nvidia-open-lts
+  when: "'nvidia-open' in ansible_facts.packages"
 
 - name: AUR
   when: aur_packages | length > 0
