@@ -2,6 +2,9 @@
   become: yes
   hosts: localhost
   connection: local
+  vars:
+    # Machine-specific additions that stay out of this repository; see README.
+    local_dir: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/dotfiles"
   vars_prompt:
   - name: "user"
     prompt: "Enter the username to configure"
@@ -26,10 +29,3 @@
       name: "{{ user }}"
       shell: /usr/bin/fish
       state: present
-
-  # Machine-specific setup that stays out of this repository.
-  - name: Local tasks
-    ansible.builtin.include_tasks: "{{ local_tasks }}"
-    when: local_tasks is file
-    vars:
-      local_tasks: "{{ lookup('ansible.builtin.env', 'HOME') }}/.config/dotfiles/local.yaml"

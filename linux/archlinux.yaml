@@ -1,6 +1,46 @@
+- name: multilib repository
+  ansible.builtin.replace:
+    path: /etc/pacman.conf
+    regexp: '^#\[multilib\]\n#Include = /etc/pacman.d/mirrorlist'
+    replace: "[multilib]\nInclude = /etc/pacman.d/mirrorlist"
+  register: multilib
+
 - name: Packages
   community.general.pacman:
-    name: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt').splitlines() }}"
+    name: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt').splitlines() + local_pacman_packages }}"
+    update_cache: "{{ multilib.changed }}"
+  vars:
+    local_pacman_packages: "{{ (lookup('ansible.builtin.file', local_dir + '/pacman.txt', errors='ignore') or '').splitlines() }}"
+
+- name: AUR
+  when: aur_packages | length > 0
+  vars:
+    aur_packages: "{{ (lookup('ansible.builtin.file', local_dir + '/aur.txt', errors='ignore') or '').splitlines() }}"
+  block:
+  - name: AUR build tools
+    community.general.pacman:
+      name: base-devel
+
+  # AUR packages build as the user; makepkg and yay call sudo themselves for
+  # the install step, reusing the authentication from this Ansible run.
+  - name: yay
+    become: no
+    ansible.builtin.shell:
+      cmd: |
+        set -e
+        dir=$(mktemp -d)
+        git clone --depth 1 https://aur.archlinux.org/yay-bin.git "$dir"
+        cd "$dir"
+        makepkg -si --noconfirm
+        rm -rf "$dir"
+      creates: /usr/bin/yay
+
+  - name: AUR packages
+    become: no
+    ansible.builtin.command:
+      argv: "{{ ['yay', '-S', '--needed', '--noconfirm'] + aur_packages }}"
+    register: aur
+    changed_when: "'there is nothing to do' not in aur.stdout"
 
 - name: SSH agent
   become: no
