@@ -2,6 +2,7 @@ dunst
 feh
 ghostty
 i3status-rust
+nautilus
 picom
 polkit-gnome
 rofi
