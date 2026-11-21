@@ -1,12 +1,15 @@
 ansible
 curl
 fish
+fwupd
 git
 graphviz
 htop
 make
 mise
 neovim
+pacman-contrib
+reflector
 screen
 starship
 tree

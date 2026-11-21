@@ -12,3 +12,20 @@
     src: "{{ playbook_dir }}/30-natural-scrolling.conf"
     dest: /etc/X11/xorg.conf.d/30-natural-scrolling.conf
     mode: "0644"
+
+- name: NVIDIA suspend services
+  ansible.builtin.stat:
+    path: /usr/lib/systemd/system/nvidia-suspend.service
+  register: nvidia_suspend
+
+# Keep video memory across suspend and hibernate; without these the
+# display can come back black or corrupted.
+- name: Enable NVIDIA suspend services
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    enabled: yes
+  loop:
+  - nvidia-hibernate.service
+  - nvidia-resume.service
+  - nvidia-suspend.service
+  when: nvidia_suspend.stat.exists

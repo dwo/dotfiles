@@ -66,6 +66,29 @@
     register: aur
     changed_when: "'there is nothing to do' not in aur.stdout"
 
+# The default picks the most recently synced mirrors worldwide, regardless
+# of distance; rank recent ones by download speed from this machine instead.
+- name: Mirror selection
+  ansible.builtin.copy:
+    content: |
+      --save /etc/pacman.d/mirrorlist
+      --protocol https
+      --latest 20
+      --sort rate
+      --number 5
+    dest: /etc/xdg/reflector/reflector.conf
+    mode: "0644"
+
+- name: Maintenance timers
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+  - fwupd-refresh.timer
+  - paccache.timer
+  - reflector.timer
+
 - name: SSH agent
   become: no
   ansible.builtin.systemd_service:
