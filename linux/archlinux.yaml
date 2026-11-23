@@ -188,6 +188,17 @@
       regexp: '^#?timeout\b'
       line: timeout 0
 
+# systemd-boot doesn't detect the memory tester; hold Space at power-on to pick
+# it from the boot menu.
+- name: Memory test boot entry
+  ansible.builtin.copy:
+    content: |
+      title Memtest86+
+      efi /memtest86+/memtest86x64.efi
+    dest: /boot/loader/entries/memtest.conf
+    mode: "0644"
+  when: "'memtest86+-efi' in ansible_facts.packages"
+
 # SDDM with catppuccin-sddm-theme-mocha from the AUR. It takes over from
 # whichever display manager the installer set up at the next boot; switching
 # now would end the running session.
