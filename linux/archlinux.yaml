@@ -199,9 +199,8 @@
     mode: "0644"
   when: "'memtest86+-efi' in ansible_facts.packages"
 
-# SDDM with catppuccin-sddm-theme-mocha from the AUR. It takes over from
-# whichever display manager the installer set up at the next boot; switching
-# now would end the running session.
+# SDDM with catppuccin-sddm-theme-mocha from the AUR. It's enabled but not
+# started, because starting a display manager ends the running session.
 - name: Login screen
   when: "'sddm' in ansible_facts.packages"
   block:
