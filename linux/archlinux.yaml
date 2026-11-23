@@ -228,12 +228,6 @@
       dest: /usr/share/sddm/themes/catppuccin-mocha-lavender/theme.conf.user
       mode: "0644"
 
-  - name: Previous display manager
-    ansible.builtin.systemd_service:
-      name: lightdm
-      enabled: no
-    when: "'lightdm' in ansible_facts.packages"
-
   - name: SDDM as the display manager
     ansible.builtin.systemd_service:
       name: sddm
