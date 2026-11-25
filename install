@@ -39,8 +39,9 @@ if [ -e /etc/systemd/system/display-manager.service ]; then
   cp gtk.css "$HOME"/.config/gtk-4.0/gtk.css
   mkdir -p "$HOME"/.config/picom
   cp picom.conf "$HOME"/.config/picom/picom.conf
-  mkdir -p "$HOME"/.config/qt6ct
+  mkdir -p "$HOME"/.config/qt6ct/colors
   cp qt6ct.conf "$HOME"/.config/qt6ct/qt6ct.conf
+  cp qt6ct-catppuccin.conf "$HOME"/.config/qt6ct/colors/catppuccin-mocha-lavender.conf
   cp xprofile "$HOME"/.xprofile
   mkdir -p "$HOME"/.local/bin
   cp lock-screen "$HOME"/.local/bin/lock-screen
