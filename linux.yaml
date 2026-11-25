@@ -32,3 +32,7 @@
       name: "{{ user }}"
       shell: /usr/bin/fish
       state: present
+
+  - name: Machine-specific tasks
+    ansible.builtin.include_tasks: "{{ local_dir }}/tasks.yaml"
+    when: (local_dir + '/tasks.yaml') is file

@@ -1,3 +1,4 @@
+audacity
 blueman
 discord
 dunst
@@ -14,7 +15,6 @@ nautilus
 noto-fonts-emoji
 nss-mdns  # .local names through Avahi
 pavucontrol
-picard
 picom
 polkit-gnome
 qt6ct

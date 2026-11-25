@@ -84,14 +84,6 @@
     dest: /etc/dunst/dunstrc.d/fullscreen.conf
     mode: "0644"
 
-# Bluetooth adapters that suspend when idle can lose track of connections on
-# resume, dropping input devices; MediaTek combo cards are prone to it.
-- name: Bluetooth adapter without autosuspend
-  ansible.builtin.copy:
-    content: "options btusb enable_autosuspend=0\n"
-    dest: /etc/modprobe.d/btusb.conf
-    mode: "0644"
-
 # The kernel's default 30-50 ms interval limits mice to 20-33 updates a second,
 # which makes pointer motion visibly choppy.
 - name: Bluetooth LE connection interval
