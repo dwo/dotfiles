@@ -10,12 +10,13 @@
 - Prefer existing project patterns.
 - Add options, variables, or helpers only for real variation.
 - Abstract repeated code only after the third real occurrence.
-- Prefer to let tests run in CI unless running locally will help inform implementation.
+- Prefer to watch tests run in CI after push unless running locally will help inform implementation.
 
 ## Git and Files
 
 - Isolate sessions in branches and worktrees under `<project>/.worktrees`.
-- Amend small changes when the existing commit message remains accurate.
+- Amend small changes when the previous commit message remains accurate.
+- Review and rebase PRs / squash commits once a PR goes above 5 commits.
 - Never skip commit signing; ask me to unlock the key if needed.
 - Never post GitHub comments or reviews unless explicitly requested.
 - Keep PR validation summaries brief.
