@@ -35,6 +35,8 @@ if [ -e /etc/systemd/system/display-manager.service ]; then
   cp i3config "$HOME"/.config/i3/config
   mkdir -p "$HOME"/.config/i3status-rust
   cp i3status-rust.toml "$HOME"/.config/i3status-rust/config.toml
+  mkdir -p "$HOME"/.config/gtk-4.0
+  cp gtk.css "$HOME"/.config/gtk-4.0/gtk.css
   mkdir -p "$HOME"/.config/picom
   cp picom.conf "$HOME"/.config/picom/picom.conf
   mkdir -p "$HOME"/.config/qt6ct

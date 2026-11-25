@@ -1,0 +1,38 @@
+/* Catppuccin Mocha with a lavender accent, through libadwaita's colour
+   variables. Catppuccin no longer maintains a GTK theme. */
+:root {
+  --accent-bg-color: #b4befe;
+  --accent-color: #b4befe;
+  --accent-fg-color: #11111b;
+  --card-bg-color: #313244;
+  --card-fg-color: #cdd6f4;
+  --destructive-bg-color: #f38ba8;
+  --destructive-color: #f38ba8;
+  --destructive-fg-color: #11111b;
+  --dialog-bg-color: #1e1e2e;
+  --dialog-fg-color: #cdd6f4;
+  --error-bg-color: #f38ba8;
+  --error-color: #f38ba8;
+  --error-fg-color: #11111b;
+  --headerbar-bg-color: #181825;
+  --headerbar-fg-color: #cdd6f4;
+  --popover-bg-color: #313244;
+  --popover-fg-color: #cdd6f4;
+  --secondary-sidebar-bg-color: #181825;
+  --secondary-sidebar-fg-color: #cdd6f4;
+  --sidebar-bg-color: #181825;
+  --sidebar-fg-color: #cdd6f4;
+  --success-bg-color: #a6e3a1;
+  --success-color: #a6e3a1;
+  --success-fg-color: #11111b;
+  --view-bg-color: #1e1e2e;
+  --view-fg-color: #cdd6f4;
+  --warning-bg-color: #f9e2af;
+  --warning-color: #f9e2af;
+  --warning-fg-color: #11111b;
+  --window-bg-color: #1e1e2e;
+  --window-fg-color: #cdd6f4;
+  /* i3 tiles windows, but under X11 libadwaita can't tell and keeps the
+     corners it gives floating windows. */
+  --window-radius: 0px;
+}
