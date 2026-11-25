@@ -1,6 +1,7 @@
 ## Communication
 
 - Be concise.
+- Present tables as TSV for ease of copying into Slack.
 
 ## Working Style
 
