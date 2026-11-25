@@ -125,6 +125,42 @@
     register: aur
     changed_when: "'there is nothing to do' not in aur.stdout"
 
+  # Papirus with folders recoloured to match the Catppuccin Mocha Lavender
+  # login screen. The package's pacman hook reapplies the colour when Papirus
+  # updates.
+  - name: Catppuccin icons
+    when: "'papirus-folders-catppuccin-git' in aur_packages"
+    block:
+    # papirus-folders -l can't report hyphenated colours like Catppuccin's as
+    # current, so read the folder icon link it changes instead.
+    - name: Icon folder colour
+      ansible.builtin.stat:
+        path: /usr/share/icons/Papirus/48x48/places/folder.svg
+      register: folder_colour
+
+    - name: Catppuccin icon folders
+      ansible.builtin.command: papirus-folders -C cat-mocha-lavender --theme Papirus-Dark
+      when: folder_colour.stat.lnk_target != 'folder-cat-mocha-lavender.svg'
+
+    - name: Icon theme settings directories
+      ansible.builtin.file:
+        path: "/etc/{{ item }}"
+        state: directory
+        mode: "0755"
+      loop: [gtk-3.0, gtk-4.0]
+
+    # Without a GNOME settings daemon, GTK under X11 reads the icon theme from
+    # settings.ini rather than dconf.
+    - name: Icon theme
+      community.general.ini_file:
+        path: "/etc/{{ item }}/settings.ini"
+        section: Settings
+        option: gtk-icon-theme-name
+        value: Papirus-Dark
+        no_extra_spaces: yes
+        mode: "0644"
+      loop: [gtk-3.0, gtk-4.0]
+
 # An animated boot splash, from plymouth-theme-abstract-ring-git in the AUR,
 # that also draws the disk encryption password prompt.
 - name: Boot splash
