@@ -270,3 +270,36 @@
     enabled: "{{ not display_manager.stat.exists }}"
   - name: gcr-ssh-agent.socket
     enabled: "{{ display_manager.stat.exists }}"
+
+# Files lists network devices such as a NAS through Avahi. systemd-resolved
+# also speaks mDNS, even when only resolving, and two mDNS stacks on one host
+# conflict, so Avahi resolves .local names too, through nss-mdns.
+- name: Network device discovery
+  when: "'gvfs-dnssd' in ansible_facts.packages"
+  block:
+  - name: DNS cache without mDNS
+    ansible.builtin.copy:
+      content: |
+        [Resolve]
+        MulticastDNS=no
+      dest: /etc/systemd/resolved.conf.d/mdns.conf
+      mode: "0644"
+    register: resolved_mdns
+
+  - name: Resolve .local names through Avahi
+    ansible.builtin.replace:
+      path: /etc/nsswitch.conf
+      regexp: '^(hosts:\s+mymachines)\s+(?!mdns_minimal)'
+      replace: '\1 mdns_minimal [NOTFOUND=return] '
+
+  - name: Restart the DNS cache for mDNS
+    ansible.builtin.systemd_service:
+      name: systemd-resolved
+      state: restarted
+    when: resolved_mdns.changed
+
+  - name: Avahi
+    ansible.builtin.systemd_service:
+      name: avahi-daemon.service
+      enabled: yes
+      state: started

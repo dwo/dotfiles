@@ -5,11 +5,14 @@ feh
 feishin
 ghostty
 gnome-keyring
+gvfs-dnssd
+gvfs-smb
 i3status-rust
 maim
 memtest86+-efi
 nautilus
 noto-fonts-emoji
+nss-mdns
 pavucontrol
 picom
 polkit-gnome
