@@ -10,7 +10,6 @@ On work machines, run `MISE_ENV=work ./install` once to also install work-only t
 
 Optional files in `~/.config/dotfiles/` extend a single machine without being committed here:
 
-- `pacman.txt`: extra Arch packages, one per line, installed alongside the repository's `pacman.txt`.
 - `aur.txt`: Arch User Repository packages, one per line, installed with yay, which is built first if missing.
-
-Shell configuration specific to one machine goes in `~/.sh_local`, which the fish config sources if present.
+- `config.fish`: fish shell configuration, sourced at the end of the repository's fish config so it can override it.
+- `pacman.txt`: extra Arch packages, one per line, installed alongside the repository's `pacman.txt`.

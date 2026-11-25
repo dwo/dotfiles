@@ -30,6 +30,7 @@ mise activate fish | source
 
 starship init fish | source
 
-# Optional machine-specific shell init
-if [ -e ~/.sh_local ]; source ~/.sh_local;
+# Last, so a machine can override anything above
+if test -e ~/.config/dotfiles/config.fish
+  source ~/.config/dotfiles/config.fish
 end

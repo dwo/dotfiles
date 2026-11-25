@@ -50,6 +50,12 @@ cp aliases "$HOME"/.aliases
 mkdir -p "$HOME"/.config/fish
 cp shrc "$HOME"/.config/fish/config.fish
 cp starship.toml "$HOME"/.config/starship.toml
+local_fish="$HOME"/.config/dotfiles/config.fish
+# Formerly ~/.sh_local
+if [ -e "$HOME"/.sh_local ] && [ ! -e "$local_fish" ]; then
+  mkdir -p "$(dirname "$local_fish")"
+  mv "$HOME"/.sh_local "$local_fish"
+fi
 
 # Ghostty
 mkdir -p "$HOME"/.config/ghostty
@@ -79,8 +85,11 @@ git config --file "$HOME"/.gitconfig user.signingkey "$GIT_SIGNINGKEY"
 mkdir -p "$HOME"/.config/mise
 cp mise.toml "$HOME"/.config/mise/config.toml
 work_env='set -gx MISE_ENV work'
-if [ "${MISE_ENV:-}" == work ] || grep -qxF "$work_env" "$HOME"/.sh_local 2>/dev/null; then
-  grep -qxF "$work_env" "$HOME"/.sh_local 2>/dev/null || echo "$work_env" >> "$HOME"/.sh_local
+if [ "${MISE_ENV:-}" == work ] || grep -qxF "$work_env" "$local_fish" 2>/dev/null; then
+  if ! grep -qxF "$work_env" "$local_fish" 2>/dev/null; then
+    mkdir -p "$(dirname "$local_fish")"
+    echo "$work_env" >> "$local_fish"
+  fi
   export MISE_ENV=work
   cp mise.work.toml "$HOME"/.config/mise/config.work.toml
   cp terraformrc "$HOME/.terraformrc"
