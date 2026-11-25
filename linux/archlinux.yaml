@@ -67,11 +67,13 @@
 
 - name: Packages
   community.general.pacman:
-    name: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt').splitlines() + desktop_packages + local_pacman_packages }}"
+    name: "{{ (package_lists | map('regex_replace', '#.*', '') | join(' ')).split() }}"
     update_cache: "{{ multilib.changed }}"
   vars:
-    desktop_packages: "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman-desktop.txt').splitlines() if display_manager.stat.exists else [] }}"
-    local_pacman_packages: "{{ (lookup('ansible.builtin.file', local_dir + '/pacman.txt', errors='ignore') or '').splitlines() }}"
+    package_lists:
+    - "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman.txt') }}"
+    - "{{ lookup('ansible.builtin.file', playbook_dir + '/pacman-desktop.txt') if display_manager.stat.exists else '' }}"
+    - "{{ lookup('ansible.builtin.file', local_dir + '/pacman.txt', errors='ignore') or '' }}"
 
 - name: Installed packages
   ansible.builtin.package_facts:
@@ -93,8 +95,10 @@
 - name: AUR
   when: aur_packages | length > 0
   vars:
-    aur_packages: "{{ desktop_aur_packages + (lookup('ansible.builtin.file', local_dir + '/aur.txt', errors='ignore') or '').splitlines() }}"
-    desktop_aur_packages: "{{ lookup('ansible.builtin.file', playbook_dir + '/aur-desktop.txt').splitlines() if display_manager.stat.exists else [] }}"
+    aur_packages: "{{ (aur_package_lists | map('regex_replace', '#.*', '') | join(' ')).split() }}"
+    aur_package_lists:
+    - "{{ lookup('ansible.builtin.file', playbook_dir + '/aur-desktop.txt') if display_manager.stat.exists else '' }}"
+    - "{{ lookup('ansible.builtin.file', local_dir + '/aur.txt', errors='ignore') or '' }}"
   block:
   - name: AUR build tools
     community.general.pacman:

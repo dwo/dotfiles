@@ -5,14 +5,14 @@ feh
 feishin
 ghostty
 gnome-keyring
-gvfs-dnssd
-gvfs-smb
+gvfs-dnssd  # Network devices in Files, found through Avahi
+gvfs-smb  # SMB shares in Files
 i3status-rust
 maim
-memtest86+-efi
+memtest86+-efi  # Memory test boot entry
 nautilus
 noto-fonts-emoji
-nss-mdns
+nss-mdns  # .local names through Avahi
 pavucontrol
 picom
 polkit-gnome

@@ -2,16 +2,16 @@
 ansible
 curl
 fish
-fwupd
+fwupd  # Firmware updates, refreshed by a timer
 git
 graphviz
 htop
-linux-lts
+linux-lts  # Fallback boot option
 make
 mise
 neovim
-pacman-contrib
-reflector
+pacman-contrib  # paccache timer to prune the package cache
+reflector  # Mirror ranking, refreshed by a timer
 screen
 starship
 tree
