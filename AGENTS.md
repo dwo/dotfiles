@@ -18,11 +18,11 @@
 - Review and rebase PRs / squash commits once a PR goes above 5 commits.
 - Never skip commit signing; ask me to unlock the key if needed.
 - Never post GitHub comments or reviews unless explicitly requested.
-- Keep PR validation summaries brief.
+- Use `.yaml` rather than `.yml` for YAML files.
 
 ## Commands
 
-- Suggest local commands in `fish` syntax unless specified otherwise.
+- Suggest local commands for the user to run in `fish` syntax unless specified otherwise.
 - Use portable shell syntax in documentation.
 - Put CLI global flags after the subcommand or action.
 - Run git from the intended directory; avoid `git -C`.
@@ -35,9 +35,9 @@
 
 - Add docs and code comments only when they explain necessary context, rationale, or constraints that clearer code or config cannot convey.
 - Docs and comments must never merely repeat or narrate the implementation.
-- Write docs, comments, commit messages, and PR descriptions to stand alone; omit chat history.
+- Write docs, comments, commit messages, and pull request (PR) descriptions to stand alone; omit chat history.
 - Code comment wrapping should follow the code's formatting line-length.
 - Use one sentence per line in Markdown except for GitHub PR descriptions which join lines with newlines instead of spaces.
-- Use `.yaml` rather than `.yml` for YAML files.
+- Keep PR descriptions and commit messages blame-free.
 - Alphabetize lists unless order carries meaning.
 - Introduce acronyms fully unrolled with the acronym in parentheses on their first appearance.
