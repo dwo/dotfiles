@@ -9,7 +9,8 @@
 - Prefer existing project patterns.
 - Add options, variables, or helpers only for real variation.
 - Abstract repeated code only after the third real occurrence.
-- Prefer to watch tests run in CI after push unless running locally will help inform implementation.
+- Leave it to CI: prefer to watch tests run in CI after push unless running locally will help inform implementation.
+  Pull request (PR) descriptions must not narrate what tests passed locally when CI will pass/fail checks anyway.
 
 ## Git and Files
 
@@ -35,7 +36,7 @@
 
 - Add docs and code comments only when they explain necessary context, rationale, or constraints that clearer code or config cannot convey.
 - Docs and comments must never merely repeat or narrate the implementation.
-- Write docs, comments, commit messages, and pull request (PR) descriptions to stand alone; omit chat history.
+- Write docs, comments, commit messages, and PR descriptions to stand alone; omit chat history.
 - Code comment wrapping should follow the code's formatting line-length.
 - Use one sentence per line in Markdown except for GitHub PR descriptions which join lines with newlines instead of spaces.
 - Keep PR descriptions and commit messages blame-free.
