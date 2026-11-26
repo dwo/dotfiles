@@ -1,7 +1,6 @@
 ## Communication
 
 - Be concise.
-- Present tables as TSV for ease of copying into Slack.
 
 ## Working Style
 
@@ -41,3 +40,4 @@
 - Use one sentence per line in Markdown except for GitHub PR descriptions which join lines with newlines instead of spaces.
 - Use `.yaml` rather than `.yml` for YAML files.
 - Alphabetize lists unless order carries meaning.
+- Introduce acronyms fully unrolled with the acronym in parentheses on their first appearance.
