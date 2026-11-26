@@ -41,4 +41,4 @@
 - Use one sentence per line in Markdown except for GitHub PR descriptions which join lines with newlines instead of spaces.
 - Keep PR descriptions and commit messages blame-free.
 - Alphabetize lists unless order carries meaning.
-- Introduce acronyms fully unrolled with the acronym in parentheses on their first appearance.
+- Introduce uncommon acronyms fully unrolled with the acronym in parentheses on their first appearance.
